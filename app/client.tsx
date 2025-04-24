@@ -47,6 +47,21 @@ export default function ClientLayout({
             <link rel="icon" href="/icon.svg" type="image/svg+xml" />
             <link rel="manifest" href="/manifest.json" />
 
+            <meta property="og:title" content="Ashwin Gopalsamy" />
+            <meta property="og:description" content="Product Engineer. Blogger. Open-source contributor." />
+            <meta property="og:image" content="https://ashwingopalsamy.in/social-background.png" />
+            <meta property="og:url" content="https://ashwingopalsamy.in" />
+            <meta property="og:type" content="website" />
+            <meta property="og:site_name" content="Ashwin Gopalsamy" />
+
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:site" content="@ashwingopalsamy" />
+            <meta name="twitter:creator" content="@ashwingopalsamy" />
+            <meta name="twitter:title" content="Ashwin Gopalsamy" />
+            <meta name="twitter:description" content="Product Engineer. Blogger. Open-source contributor." />
+            <meta name="twitter:image" content="https://ashwingopalsamy.in/social-background.png" />
+
+
             {/* Preconnect to external domains */}
             <link rel="preconnect" href="https://fonts.googleapis.com" />
             <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
