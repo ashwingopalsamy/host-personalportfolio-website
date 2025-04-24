@@ -12,8 +12,7 @@ export const metadata: Metadata = {
     default: "Ashwin Gopalsamy | Cloud-Native Backend Engineer & Distributed Systems Specialist",
     template: "%s | Ashwin Gopalsamy",
   },
-  description:
-      "Ashwin Gopalsamy is a software engineer specializing in cloud-native backend development, Go microservices, and distributed systems with 4+ years of fintech experience.",
+  description: "Product Engineer. Blogger. Open-source contributor.",
   keywords: [
     "Ashwin Gopalsamy",
     "Software Engineer",
@@ -57,26 +56,24 @@ export const metadata: Metadata = {
     type: "profile",
     locale: "en_US",
     url: baseUrl,
-    title: "Ashwin Gopalsamy | Cloud-Native Backend Engineer & Distributed Systems Specialist",
-    description:
-        "Software engineer with 4+ years experience in Go, AWS, and event-sourced microservices architecture for fintech products.",
+    title: "Ashwin Gopalsamy",
+    description: "Product Engineer. Open-source contributor and Blogger.",
     siteName: "Ashwin Gopalsamy",
     images: [
       {
-        url: `${baseUrl}/dp.jpg`,
+        url: `${baseUrl}/social-background.png`,
         width: 1200,
         height: 630,
-        alt: "Ashwin Gopalsamy - Software Engineer specializing in cloud-native backend development",
+        alt: "Ashwin Gopalsamy - Product Engineer. Open-source contributor and Blogger.",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ashwin Gopalsamy | Cloud-Native Backend Engineer",
-    description:
-        "Software engineer specializing in Go, AWS, and distributed systems with experience building fintech products at scale.",
+    title: "Ashwin Gopalsamy",
+    description: "Product Engineer. Open-source contributor and Blogger.",
     creator: "@ashwingopalsamy",
-    images: [`${baseUrl}/dp.jpg`],
+    images: [`${baseUrl}/social-background.png`],
   },
   verification: {
     google: "google-site-verification-code", // Replace with actual verification code

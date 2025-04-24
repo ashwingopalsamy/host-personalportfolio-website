@@ -74,6 +74,7 @@ export default function ClientLayout({
                 fetchPriority="high"
             />
             <link rel="preload" href="/Solaris.svg" as="image" />
+            <link rel="preload" href="/social-background.png" as="image" />
 
             {/* DNS prefetch for external resources */}
             <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
