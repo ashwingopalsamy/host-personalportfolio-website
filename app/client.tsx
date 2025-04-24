@@ -79,6 +79,30 @@ export default function ClientLayout({
             <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
             <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
             <link rel="dns-prefetch" href="https://plausible.io" />
+
+            {/* OpenGraph tags */}
+            <meta property="og:title" content="Ashwin Gopalsamy | Cloud-Native Backend Engineer" />
+            <meta
+                property="og:description"
+                content="Software engineer specializing in cloud-native backend development, Go, and distributed systems with 4+ years of fintech experience"
+            />
+            <meta property="og:image" content={`${baseUrl}/og-image.png`} />
+            <meta property="og:url" content={baseUrl} />
+            <meta property="og:type" content="profile" />
+            <meta property="og:site_name" content="Ashwin Gopalsamy" />
+
+            {/* Twitter Card tags */}
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:creator" content="@ashwingopalsamy" />
+            <meta name="twitter:title" content="Ashwin Gopalsamy | Cloud-Native Backend Engineer" />
+            <meta
+                name="twitter:description"
+                content="Software engineer specializing in Go, AWS, and distributed systems with experience building fintech products at scale."
+            />
+            <meta name="twitter:image" content={`${baseUrl}/og-image.png`} />
+
+            {/* Canonical link */}
+            <link rel="canonical" href={baseUrl} />
         </head>
         <body className="font-sans antialiased">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>

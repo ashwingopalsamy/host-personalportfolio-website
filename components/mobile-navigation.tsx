@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { GlassContainer } from "./ui/glass-container"
-import {Home, BriefcaseBusiness, CodeXml, NotebookPen, Handshake} from "lucide-react"
+import {Home, BriefcaseBusiness, CodeXml, NotebookPen, Handshake, FolderCode} from "lucide-react"
 
 interface NavItem {
     name: string
@@ -25,7 +25,7 @@ export function MobileNavigation() {
         { name: "home", href: "#home", icon: <Home className="h-5 w-5" /> },
         {name : "skills", href: "#skills", icon: <CodeXml className="h-5 w-5" /> },
         { name: "experience", href: "#experience", icon: <BriefcaseBusiness className="h-5 w-5" /> },
-        { name: "projects", href: "#projects", icon: <CodeXml className="h-5 w-5" /> },
+        { name: "projects", href: "#projects", icon: <FolderCode className="h-5 w-5" /> },
         { name: "blog", href: "#blog", icon: <NotebookPen className="h-5 w-5" /> },
         { name: "connect", href: "#connect", icon: <Handshake className="h-5 w-5" /> },
     ]

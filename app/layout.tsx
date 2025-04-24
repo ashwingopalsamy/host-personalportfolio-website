@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     siteName: "Ashwin Gopalsamy",
     images: [
       {
-        url: `${baseUrl}/dp.jpg`,
+        url: `${baseUrl}/og-image.png`,
         width: 1200,
         height: 630,
         alt: "Ashwin Gopalsamy - Software Engineer specializing in cloud-native backend development",
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
     description:
         "Software engineer specializing in Go, AWS, and distributed systems with experience building fintech products at scale.",
     creator: "@ashwingopalsamy",
-    images: [`${baseUrl}/dp.jpg`],
+    images: [`${baseUrl}/og-image.png`],
   },
   verification: {
     google: "google-site-verification-code", // Replace with actual verification code
