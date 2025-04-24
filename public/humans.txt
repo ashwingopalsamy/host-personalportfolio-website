@@ -10,7 +10,7 @@
 	Specialties: Go, AWS, Kubernetes, Terraform, Distributed Systems, Microservices
 
 /* SITE */
-	Last update: 2025/04/24
+	Last update: 2025/04/06
 	Language: English
 	Doctype: HTML5
 	IDE: Jetbrains Webstorm
