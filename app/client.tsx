@@ -50,6 +50,7 @@ export default function ClientLayout({
             {/* Preconnect to external domains */}
             <link rel="preconnect" href="https://fonts.googleapis.com" />
             <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+            <link rel="preconnect" href="https://plausible.io" />
 
             {/* Identity verification links */}
             <link rel="me" href="https://github.com/ashwingopalsamy" />
@@ -57,9 +58,27 @@ export default function ClientLayout({
             <link rel="me" href="https://twitter.com/ashwingopalsamy" />
 
             {/* Preload critical assets */}
-            <link rel="preload" href="/dp.jpg" as="image" />
-            <link rel="preload" href="/logo-dark.png" as="image" media="(prefers-color-scheme: dark)" />
-            <link rel="preload" href="/logo-light.png" as="image" media="(prefers-color-scheme: light)" />
+            <link rel="preload" href="/dp.jpg" as="image" fetchPriority="high" />
+            <link
+                rel="preload"
+                href="/logo-dark.png"
+                as="image"
+                media="(prefers-color-scheme: dark)"
+                fetchPriority="high"
+            />
+            <link
+                rel="preload"
+                href="/logo-light.png"
+                as="image"
+                media="(prefers-color-scheme: light)"
+                fetchPriority="high"
+            />
+            <link rel="preload" href="/Solaris.svg" as="image" />
+
+            {/* DNS prefetch for external resources */}
+            <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+            <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+            <link rel="dns-prefetch" href="https://plausible.io" />
         </head>
         <body className="font-sans antialiased">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
@@ -76,16 +95,15 @@ export default function ClientLayout({
         </ThemeProvider>
 
         <noscript>
-            <div className="p-4 bg-red-50 text-red-800 border border-red-200 rounded-md fixed top-0 left-0 right-0 z-[200] text-center">
-                <p>
-                    JavaScript is disabled. You're viewing a simplified version of this website with core content and
-                    functionality.
-                </p>
-                <p>For the full interactive experience, please enable JavaScript in your browser settings.</p>
+            <div className="p-4 bg-red-50 text-red-800 border border-red-200 rounded-md fixed top-0 left-0 right-0 z-[200]">
+                This website works best with JavaScript enabled. Some features may be limited.
             </div>
+            <style jsx global>{`
+                .js-only { display: none !important; }
+            `}</style>
         </noscript>
 
-        {/* Structured data for Person schema */}
+        {/* Structured data for Person schema - Enhanced with more detailed information */}
         <Script
             id="person-schema"
             type="application/ld+json"
@@ -100,37 +118,63 @@ export default function ClientLayout({
                         "https://github.com/ashwingopalsamy",
                         "https://linkedin.com/in/ashwingopalsamy",
                         "https://twitter.com/ashwingopalsamy",
+                        "https://ashwingopalsamy.substack.com",
                     ],
                     jobTitle: "Software Engineer",
                     worksFor: {
                         "@type": "Organization",
-                        name: "HackerRank",
+                        name: "Solaris SE",
+                        url: "https://www.solarisgroup.com",
                     },
                     alumniOf: [
                         {
                             "@type": "CollegeOrUniversity",
-                            name: "Your University", // Replace with actual university
+                            name: "Hindusthan College of Engineering and Technology",
+                            url: "https://hindusthan.net",
                         },
                     ],
                     knowsAbout: [
-                        "Python",
-                        "Go",
-                        "Backend Development",
-                        "Django",
-                        "Flask",
-                        "ExpressJS",
-                        "PostgreSQL",
-                        "MongoDB",
-                        "SQLite",
-                        "Microservices",
+                        "Go Programming",
+                        "Cloud-Native Development",
+                        "AWS",
+                        "Kubernetes",
+                        "Terraform",
+                        "Microservices Architecture",
                         "Distributed Systems",
+                        "Event-Sourced Systems",
+                        "Backend Development",
+                        "Fintech",
+                        "PostgreSQL",
+                        "DynamoDB",
                     ],
-                    description: "Software engineer specializing in cloud-native backend development and distributed systems",
+                    description:
+                        "Software engineer specializing in cloud-native backend development and distributed systems with 4+ years of experience in fintech",
+                    award: [
+                        "AWS Certified Solutions Architect Associate",
+                        "AWS Certified Cloud Practitioner",
+                        "Microsoft Azure Cloud (3x Certified)",
+                    ],
+                    hasOccupation: {
+                        "@type": "Occupation",
+                        name: "Software Engineer",
+                        occupationLocation: {
+                            "@type": "City",
+                            name: "Berlin",
+                        },
+                        estimatedSalary: {
+                            "@type": "MonetaryAmountDistribution",
+                            currency: "EUR",
+                            percentile10: "70000",
+                            percentile50: "85000",
+                            percentile90: "100000",
+                        },
+                        skills: "Go, AWS, Kubernetes, Terraform, Distributed Systems, Microservices",
+                    },
                 }),
             }}
         />
 
-        {/* Website schema */}
+        {/* Website schema - Enhanced with more detailed information */}
         <Script
             id="website-schema"
             type="application/ld+json"
@@ -138,9 +182,10 @@ export default function ClientLayout({
                 __html: JSON.stringify({
                     "@context": "https://schema.org",
                     "@type": "WebSite",
-                    name: "Ashwin Gopalsamy",
+                    name: "Ashwin Gopalsamy - Cloud-Native Backend Engineer",
                     url: baseUrl,
-                    description: "Software engineer specializing in cloud-native backend development and distributed systems",
+                    description:
+                        "Software engineer specializing in cloud-native backend development and distributed systems with 4+ years of experience in fintech",
                     potentialAction: {
                         "@type": "SearchAction",
                         target: {
@@ -149,6 +194,107 @@ export default function ClientLayout({
                         },
                         "query-input": "required name=search_term_string",
                     },
+                    author: {
+                        "@type": "Person",
+                        name: "Ashwin Gopalsamy",
+                    },
+                    copyrightYear: new Date().getFullYear(),
+                    keywords:
+                        "Ashwin Gopalsamy, Software Engineer, Backend Developer, Go, AWS, Microservices, Distributed Systems",
+                    inLanguage: "en-US",
+                    isFamilyFriendly: true,
+                }),
+            }}
+        />
+
+        {/* Add BreadcrumbList schema */}
+        <Script
+            id="breadcrumb-schema"
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+                __html: JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "BreadcrumbList",
+                    itemListElement: [
+                        {
+                            "@type": "ListItem",
+                            position: 1,
+                            name: "Home",
+                            item: baseUrl,
+                        },
+                        {
+                            "@type": "ListItem",
+                            position: 2,
+                            name: "Skills",
+                            item: `${baseUrl}/#skills`,
+                        },
+                        {
+                            "@type": "ListItem",
+                            position: 3,
+                            name: "Experience",
+                            item: `${baseUrl}/#experience`,
+                        },
+                        {
+                            "@type": "ListItem",
+                            position: 4,
+                            name: "Projects",
+                            item: `${baseUrl}/#projects`,
+                        },
+                        {
+                            "@type": "ListItem",
+                            position: 5,
+                            name: "Blog",
+                            item: `${baseUrl}/#blog`,
+                        },
+                        {
+                            "@type": "ListItem",
+                            position: 6,
+                            name: "Connect",
+                            item: `${baseUrl}/#connect`,
+                        },
+                    ],
+                }),
+            }}
+        />
+
+        {/* Add JobPosting schema for current role */}
+        <Script
+            id="job-schema"
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+                __html: JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "JobPosting",
+                    title: "Software Engineer",
+                    description:
+                        "Engineered full lifecycle of 'Credit Card Interest' product generating €30M+ annual revenue. Owns 'Accounts Domain' handling 20M+ daily transactions on AWS, Kubernetes, and Terraform stack. Built 100% cloud-native, event-sourced microservices for Core-Banking achieving 99.999% uptime.",
+                    datePosted: "2022-06-01",
+                    validThrough: "2025-04-24",
+                    employmentType: "FULL_TIME",
+                    hiringOrganization: {
+                        "@type": "Organization",
+                        name: "Solaris SE",
+                        sameAs: "https://www.solarisgroup.com",
+                    },
+                    jobLocation: {
+                        "@type": "Place",
+                        address: {
+                            "@type": "PostalAddress",
+                            addressCountry: "Germany",
+                        },
+                    },
+                    baseSalary: {
+                        "@type": "MonetaryAmount",
+                        currency: "EUR",
+                        value: {
+                            "@type": "QuantitativeValue",
+                            minValue: 70000,
+                            maxValue: 100000,
+                            unitText: "YEAR",
+                        },
+                    },
+                    skills:
+                        "Go, AWS, Kubernetes, Terraform, Distributed Systems, Microservices, Event-Sourced Systems, PostgreSQL, DynamoDB",
                 }),
             }}
         />

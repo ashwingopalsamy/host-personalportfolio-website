@@ -8,7 +8,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/private/", "/api/", "/*.json$"],
+        disallow: ["/private/", "/api/", "/*.json$", "/admin/", "/drafts/"],
       },
       {
         userAgent: "Googlebot",
@@ -18,6 +18,21 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "Googlebot-Image",
         allow: "/",
+      },
+      {
+        userAgent: "Bingbot",
+        allow: "/",
+        disallow: ["/private/", "/api/"],
+      },
+      {
+        userAgent: "Slurp",
+        allow: "/",
+        disallow: ["/private/", "/api/"],
+      },
+      {
+        userAgent: "DuckDuckBot",
+        allow: "/",
+        disallow: ["/private/", "/api/"],
       },
     ],
     sitemap: `${baseUrl}/sitemap.xml`,

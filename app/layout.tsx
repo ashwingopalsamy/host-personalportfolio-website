@@ -5,21 +5,28 @@ import ClientLayout from "./client"
 // Define base URL for canonical links and metadata
 const baseUrl = "https://ashwingopalsamy.in"
 
+// Enhance metadata with researched keywords
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Ashwin Gopalsamy | Portfolio",
+    default: "Ashwin Gopalsamy | Cloud-Native Backend Engineer & Distributed Systems Specialist",
     template: "%s | Ashwin Gopalsamy",
   },
-  description: "Software engineer specializing in cloud-native backend development and distributed systems",
+  description:
+      "Ashwin Gopalsamy is a software engineer specializing in cloud-native backend development, Go microservices, and distributed systems with 4+ years of fintech experience.",
   keywords: [
     "Ashwin Gopalsamy",
     "Software Engineer",
     "Backend Developer",
-    "Go",
+    "Go Developer",
     "Microservices",
     "Distributed Systems",
     "Cloud-native Architecture",
+    "AWS Certified",
+    "Fintech Engineer",
+    "Event-Sourced Systems",
+    "Kubernetes",
+    "Terraform",
   ],
   authors: [{ name: "Ashwin Gopalsamy", url: baseUrl }],
   creator: "Ashwin Gopalsamy",
@@ -50,24 +57,26 @@ export const metadata: Metadata = {
     type: "profile",
     locale: "en_US",
     url: baseUrl,
-    title: "Ashwin Gopalsamy | Software Engineer",
-    description: "Software engineer specializing in cloud-native backend development and distributed systems",
+    title: "Ashwin Gopalsamy | Cloud-Native Backend Engineer & Distributed Systems Specialist",
+    description:
+        "Software engineer with 4+ years experience in Go, AWS, and event-sourced microservices architecture for fintech products.",
     siteName: "Ashwin Gopalsamy",
     images: [
       {
-        url: `${baseUrl}/images/profile-og.jpg`,
+        url: `${baseUrl}/dp.jpg`,
         width: 1200,
         height: 630,
-        alt: "Ashwin Gopalsamy - Software Engineer",
+        alt: "Ashwin Gopalsamy - Software Engineer specializing in cloud-native backend development",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ashwin Gopalsamy | Software Engineer",
-    description: "Software engineer specializing in cloud-native backend development and distributed systems",
+    title: "Ashwin Gopalsamy | Cloud-Native Backend Engineer",
+    description:
+        "Software engineer specializing in Go, AWS, and distributed systems with experience building fintech products at scale.",
     creator: "@ashwingopalsamy",
-    images: [`${baseUrl}/images/profile-twitter.jpg`],
+    images: [`${baseUrl}/dp.jpg`],
   },
   verification: {
     google: "google-site-verification-code", // Replace with actual verification code

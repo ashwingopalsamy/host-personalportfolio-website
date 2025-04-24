@@ -170,7 +170,7 @@ export function ExperienceSection() {
                                                 >
                                                     <img
                                                         src={exp.logo || "/placeholder.svg"}
-                                                        alt={`${exp.company} logo`}
+                                                        alt={`${exp.company} logo - where Ashwin Gopalsamy worked as ${exp.role}`}
                                                         className="w-15 h-15 object-contain"
                                                         loading={index < 2 ? "eager" : "lazy"}
                                                         width="60"
