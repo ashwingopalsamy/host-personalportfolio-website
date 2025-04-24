@@ -54,7 +54,7 @@ export function ConnectSection() {
                             >
                                 <Button
                                     size="lg"
-                                    className="w-full md:w-64 rounded-full bg-primary hover:bg-primary/90 text-white px-6 py-3 text-lg h-auto"
+                                    className="w-full md:w-64 rounded-full bg-primary hover:bg-primary/90 text-white px-6 py-3 text-lg h-auto min-h-[48px]"
                                 >
                                     <a
                                         href="https://cal.com/ashwingopalsamy"
@@ -82,7 +82,7 @@ export function ConnectSection() {
                                 <Button
                                     size="lg"
                                     variant="outline"
-                                    className="w-full md:w-64 rounded-full border-primary text-primary hover:bg-primary hover:text-white transition-all px-6 py-3 text-lg h-auto"
+                                    className="w-full md:w-64 rounded-full border-primary text-primary hover:bg-primary hover:text-white transition-all px-6 py-3 text-lg h-auto min-h-[48px]"
                                     asChild
                                 >
                                     <a

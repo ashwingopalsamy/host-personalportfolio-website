@@ -1,53 +1,32 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
-import { Inter } from "next/font/google"
-import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
-import { Footer } from "@/components/footer"
-import Script from "next/script"
-import { Toaster } from "@/components/ui/toaster"
-import { SpeedInsights } from "@vercel/speed-insights/next"
-import { Analytics } from "@vercel/analytics/react"
-
-// Optimize font loading with display swap and preload
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-  preload: true,
-  fallback: [
-    "-apple-system",
-    "BlinkMacSystemFont",
-    "Segoe UI",
-    "Roboto",
-    "Oxygen",
-    "Ubuntu",
-    "Cantarell",
-    "Open Sans",
-    "Helvetica Neue",
-    "sans-serif",
-  ],
-})
+import ClientLayout from "./client"
 
 // Define base URL for canonical links and metadata
 const baseUrl = "https://ashwingopalsamy.in"
 
+// Enhance metadata with researched keywords
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Ashwin Gopalsamy | Portfolio",
+    default: "Ashwin Gopalsamy | Cloud-Native Backend Engineer & Distributed Systems Specialist",
     template: "%s | Ashwin Gopalsamy",
   },
   description:
-      "Software engineer specializing in cloud-native backend development and distributed systems",
+      "Ashwin Gopalsamy is a software engineer specializing in cloud-native backend development, Go microservices, and distributed systems with 4+ years of fintech experience.",
   keywords: [
     "Ashwin Gopalsamy",
     "Software Engineer",
     "Backend Developer",
-    "Go",
+    "Go Developer",
     "Microservices",
     "Distributed Systems",
     "Cloud-native Architecture",
+    "AWS Certified",
+    "Fintech Engineer",
+    "Event-Sourced Systems",
+    "Kubernetes",
+    "Terraform",
   ],
   authors: [{ name: "Ashwin Gopalsamy", url: baseUrl }],
   creator: "Ashwin Gopalsamy",
@@ -78,25 +57,26 @@ export const metadata: Metadata = {
     type: "profile",
     locale: "en_US",
     url: baseUrl,
-    title: "Ashwin Gopalsamy | Software Engineer",
+    title: "Ashwin Gopalsamy | Cloud-Native Backend Engineer & Distributed Systems Specialist",
     description:
-        "Software engineer specializing in cloud-native backend development and distributed systems",
+        "Software engineer with 4+ years experience in Go, AWS, and event-sourced microservices architecture for fintech products.",
     siteName: "Ashwin Gopalsamy",
     images: [
       {
-        url: `${baseUrl}/images/profile-og.jpg`,
+        url: `${baseUrl}/dp.jpg`,
         width: 1200,
         height: 630,
-        alt: "Ashwin Gopalsamy - Software Engineer",
+        alt: "Ashwin Gopalsamy - Software Engineer specializing in cloud-native backend development",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ashwin Gopalsamy | Software Engineer",
-    description: "Software engineer specializing in cloud-native backend development and distributed systems",
+    title: "Ashwin Gopalsamy | Cloud-Native Backend Engineer",
+    description:
+        "Software engineer specializing in Go, AWS, and distributed systems with experience building fintech products at scale.",
     creator: "@ashwingopalsamy",
-    images: [`${baseUrl}/images/profile-twitter.jpg`],
+    images: [`${baseUrl}/dp.jpg`],
   },
   verification: {
     google: "google-site-verification-code", // Replace with actual verification code
@@ -126,121 +106,5 @@ export default function RootLayout({
                                    }: Readonly<{
   children: React.ReactNode
 }>) {
-  return (
-      <html lang="en" suppressHydrationWarning className={inter.variable}>
-      <head>
-        <title>Ashwin Gopalsamy | Portfolio</title>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-        <link rel="manifest" href="/manifest.json" />
-
-        {/* Preconnect to external domains */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-
-        {/* Identity verification links */}
-        <link rel="me" href="https://github.com/ashwingopalsamy" />
-        <link rel="me" href="https://linkedin.com/in/ashwingopalsamy" />
-        <link rel="me" href="https://twitter.com/ashwingopalsamy" />
-
-        {/* Preload critical assets */}
-        <link rel="preload" href="/dp.jpg" as="image" />
-        <link rel="preload" href="/logo-dark.png" as="image" media="(prefers-color-scheme: dark)" />
-        <link rel="preload" href="/logo-light.png" as="image" media="(prefers-color-scheme: light)" />
-      </head>
-      <body className="font-sans antialiased">
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <div className="flex flex-col min-h-screen">
-            <main className="flex-grow" id="main-content">
-              {children}
-            </main>
-            <Footer />
-          </div>
-          <Toaster />
-        </ThemeProvider>
-
-      {/* Structured data for Person schema */}
-      <Script
-          id="person-schema"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Person",
-              name: "Ashwin Gopalsamy",
-              url: baseUrl,
-              image: `${baseUrl}/dp.jpg`,
-              sameAs: [
-                "https://github.com/ashwingopalsamy",
-                "https://linkedin.com/in/ashwingopalsamy",
-                "https://twitter.com/ashwingopalsamy",
-              ],
-              jobTitle: "Software Engineer",
-              worksFor: {
-                "@type": "Organization",
-                name: "HackerRank",
-              },
-              alumniOf: [
-                {
-                  "@type": "CollegeOrUniversity",
-                  name: "Your University", // Replace with actual university
-                },
-              ],
-              knowsAbout: [
-                "Python",
-                "Go",
-                "Backend Development",
-                "Django",
-                "Flask",
-                "ExpressJS",
-                "PostgreSQL",
-                "MongoDB",
-                "SQLite",
-                "Microservices",
-                "Distributed Systems",
-              ],
-              description:
-                  "Software engineer specializing in cloud-native backend development and distributed systems",
-            }),
-          }}
-      />
-
-      {/* Website schema */}
-      <Script
-          id="website-schema"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebSite",
-              name: "Ashwin Gopalsamy",
-              url: baseUrl,
-              description: "Software engineer specializing in cloud-native backend development and distributed systems",
-              potentialAction: {
-                "@type": "SearchAction",
-                target: {
-                  "@type": "EntryPoint",
-                  urlTemplate: `${baseUrl}/search?q={search_term_string}`,
-                },
-                "query-input": "required name=search_term_string",
-              },
-            }),
-          }}
-      />
-
-      {/* Privacy-focused analytics */}
-      <Script
-          async
-          defer
-          data-domain="ashwingopalsamy.in"
-          src="https://plausible.io/js/plausible.js"
-          strategy="afterInteractive"
-      />
-
-      {/* Vercel Web Vitals monitoring */}
-      <SpeedInsights />
-      <Analytics />
-      </body>
-      </html>
-  )
+  return <ClientLayout>{children}</ClientLayout>
 }

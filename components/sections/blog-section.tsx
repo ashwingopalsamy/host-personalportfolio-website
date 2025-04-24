@@ -38,7 +38,7 @@ export function BlogSection() {
     }, [])
 
     return (
-        <section ref={sectionRef} className="py-12 pt-32" id="blog" aria-labelledby="blog-heading">
+        <section ref={sectionRef} className="py-12 pt-32" id="blog" aria-labelledby="blog-heading" role="region">
             <div className="container-custom">
                 <GlassContainer className="p-8">
                     <motion.div

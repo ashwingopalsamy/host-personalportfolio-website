@@ -106,7 +106,13 @@ export function ExperienceSection() {
     }, [isInView, experiences])
 
     return (
-        <section ref={sectionRef} className="py-12 pt-32" id="experience" aria-labelledby="experience-heading">
+        <section
+            ref={sectionRef}
+            className="py-12 pt-32"
+            id="experience"
+            aria-labelledby="experience-heading"
+            role="region"
+        >
             <div className="container-custom">
                 <GlassContainer className="p-8">
                     <motion.div
@@ -164,7 +170,7 @@ export function ExperienceSection() {
                                                 >
                                                     <img
                                                         src={exp.logo || "/placeholder.svg"}
-                                                        alt={`${exp.company} logo`}
+                                                        alt={`${exp.company} logo - where Ashwin Gopalsamy worked as ${exp.role}`}
                                                         className="w-15 h-15 object-contain"
                                                         loading={index < 2 ? "eager" : "lazy"}
                                                         width="60"

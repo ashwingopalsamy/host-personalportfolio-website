@@ -145,8 +145,38 @@ body.light {
   background: hsl(var(--primary));
 }
 
-/* Focus styles */
 :focus-visible {
-  @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background;
+  outline: 3px solid hsl(var(--primary));
+  outline-offset: 2px;
+  border-radius: var(--radius);
+  position: relative;
+  z-index: 2;
 }
 
+/* Skip link for keyboard navigation */
+.skip-link {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  border: 1px solid hsl(var(--primary));
+  position: absolute;
+  top: -100px;
+  left: 10px;
+  padding: 10px;
+  z-index: 100;
+  transition: top 0.3s;
+  border-radius: var(--radius);
+}
+
+.skip-link:focus {
+  top: 10px;
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

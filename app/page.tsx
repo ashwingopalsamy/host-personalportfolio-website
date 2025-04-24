@@ -40,7 +40,7 @@ export default function HomePage() {
                                     >
                                         <Image
                                             src="/dp.jpg"
-                                            alt="Ashwin Gopalsamy - Software Engineer"
+                                            alt="Ashwin Gopalsamy portrait showing a professional headshot"
                                             fill
                                             className="object-cover"
                                             priority

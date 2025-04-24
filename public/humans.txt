@@ -5,6 +5,9 @@
 	LinkedIn: https://linkedin.com/in/ashwingopalsamy
 	Twitter: @ashwingopalsamy
 	From: India
+	Location: Tamil Nadu, India
+	Role: Cloud-Native Backend Engineer
+	Specialties: Go, AWS, Kubernetes, Terraform, Distributed Systems, Microservices
 
 /* SITE */
 	Last update: 2025/04/06
@@ -12,4 +15,10 @@
 	Doctype: HTML5
 	IDE: Jetbrains Webstorm
 	Stack: Next.js, React, TypeScript, Tailwind CSS, Framer Motion
+	Hosting: Vercel
+	Standards: HTML5, CSS3, ES2022
+	Components: Next.js, React, Tailwind CSS, Framer Motion
+	Software: Git, GitHub, VS Code
 
+/* THANKS */
+	Design Inspiration: anaskhan.me

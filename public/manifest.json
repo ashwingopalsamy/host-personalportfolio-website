@@ -1,7 +1,7 @@
 {
-  "name": "Ashwin Gopalsamy | Software Engineer",
+  "name": "Ashwin Gopalsamy | Cloud-Native Backend Engineer",
   "short_name": "Ashwin Gopalsamy",
-  "description": "Software engineer specializing in cloud-native backend development and distributed systems",
+  "description": "Software engineer specializing in cloud-native backend development, Go, and distributed systems with 4+ years of fintech experience",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",
@@ -19,6 +19,9 @@
       "type": "image/png",
       "purpose": "any maskable"
     }
-  ]
+  ],
+  "categories": ["portfolio", "technology", "software engineering"],
+  "lang": "en-US",
+  "orientation": "portrait-primary",
+  "prefer_related_applications": false
 }
-
