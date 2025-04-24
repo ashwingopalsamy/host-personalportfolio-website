@@ -106,7 +106,13 @@ export function ExperienceSection() {
     }, [isInView, experiences])
 
     return (
-        <section ref={sectionRef} className="py-12 pt-32" id="experience" aria-labelledby="experience-heading">
+        <section
+            ref={sectionRef}
+            className="py-12 pt-32"
+            id="experience"
+            aria-labelledby="experience-heading"
+            role="region"
+        >
             <div className="container-custom">
                 <GlassContainer className="p-8">
                     <motion.div

@@ -2,15 +2,23 @@
 
 import { motion, useScroll, useSpring } from "framer-motion"
 import { useTheme } from "next-themes"
+import { useReducedMotion } from "@/hooks/use-reduced-motion"
 
 export function ScrollProgress() {
     const { scrollYProgress } = useScroll()
+    const prefersReducedMotion = useReducedMotion()
+
     const scaleX = useSpring(scrollYProgress, {
-        stiffness: 100,
-        damping: 30,
+        stiffness: prefersReducedMotion ? 300 : 100,
+        damping: prefersReducedMotion ? 50 : 30,
         restDelta: 0.001,
     })
+
     const { theme } = useTheme()
+
+    if (prefersReducedMotion) {
+        return null // Don't show the animation for users who prefer reduced motion
+    }
 
     return (
         <motion.div
