@@ -1,0 +1,50 @@
+openapi: 3.0.1
+info:
+  title: Ashwin Gopalsamy Portfolio API
+  description: API for retrieving information about Ashwin Gopalsamy
+  version: "v1"
+servers:
+  - url: https://ashwingopalsamy.in
+paths:
+  /api/ai-summary:
+    get:
+      operationId: getAiSummary
+      summary: Get a structured summary of Ashwin Gopalsamy for AI assistants
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  person:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      profession:
+                        type: string
+                      specialization:
+                        type: string
+                      currentRole:
+                        type: string
+                      skills:
+                        type: array
+                        items:
+                          type: string
+                      experience:
+                        type: array
+                        items:
+                          type: object
+                      projects:
+                        type: array
+                        items:
+                          type: string
+                      contact:
+                        type: object
+                      summary:
+                        type: string
+                  metadata:
+                    type: object
+

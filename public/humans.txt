@@ -1,0 +1,15 @@
+/* TEAM */
+	Developer: Ashwin Gopalsamy
+	Contact: ashwin2125@icloud.com
+	GitHub: https://github.com/ashwingopalsamy
+	LinkedIn: https://linkedin.com/in/ashwingopalsamy
+	Twitter: @ashwingopalsamy
+	From: India
+
+/* SITE */
+	Last update: 2025/04/06
+	Language: English
+	Doctype: HTML5
+	IDE: Jetbrains Webstorm
+	Stack: Next.js, React, TypeScript, Tailwind CSS, Framer Motion
+
