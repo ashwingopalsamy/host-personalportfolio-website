@@ -1,18 +1,14 @@
 "use client"
 
-import type React from "react"
-
 import { Button } from "@/components/ui/button"
 import { CalendarIcon, MailIcon } from "lucide-react"
 import { GlassContainer } from "@/components/ui/glass-container"
 import { motion } from "framer-motion"
 import { useTheme } from "next-themes"
 import { cn } from "@/lib/utils"
-import { useState } from "react"
 
 export function ConnectSection() {
     const { theme } = useTheme()
-    const [showForm, setShowForm] = useState(false)
 
     return (
         <section className="py-12 pt-32" id="connect" aria-labelledby="connect-heading">
@@ -87,12 +83,16 @@ export function ConnectSection() {
                                     size="lg"
                                     variant="outline"
                                     className="w-full md:w-64 rounded-full border-primary text-primary hover:bg-primary hover:text-white transition-all px-6 py-3 text-lg h-auto"
-                                    onClick={() => setShowForm(!showForm)}
+                                    asChild
                                 >
-                  <span className="flex items-center justify-center gap-2 w-full">
-                    <MailIcon className="w-5 h-5" aria-hidden="true" />
-                      {showForm ? "Hide form" : "Send a message"}
-                  </span>
+                                    <a
+                                        href="mailto:ashwin2125@icloud.com"
+                                        className="flex items-center justify-center gap-2 w-full"
+                                        aria-label="Send an email"
+                                    >
+                                        <MailIcon className="w-5 h-5" aria-hidden="true" />
+                                        Send an email
+                                    </a>
                                 </Button>
                             </motion.div>
                         </div>
