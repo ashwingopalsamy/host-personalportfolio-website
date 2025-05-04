@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     siteName: "Ashwin Gopalsamy",
     images: [
       {
-        url: `${baseUrl}/og-image.png`,
+        url: `${baseUrl}/_vercel/image?url=${encodeURIComponent(`${baseUrl}/og-image.png`)}&w=1200&q=75`,
         width: 1200,
         height: 630,
         alt: "Ashwin Gopalsamy - Software Engineer specializing in cloud-native backend development",
@@ -77,7 +77,23 @@ export const metadata: Metadata = {
     description:
         "Software engineer specializing in Go, AWS, and distributed systems with experience building fintech products at scale.",
     creator: "@ashwingopalsamy",
-    images: [`${baseUrl}/og-image.png`],
+    images: [`${baseUrl}/_vercel/image?url=${encodeURIComponent(`${baseUrl}/og-image.png`)}&w=1200&q=75`],
+  },
+  other: {
+    "og:image": `${baseUrl}/_vercel/image?url=${encodeURIComponent(`${baseUrl}/og-image.png`)}&w=1200&q=75`,
+    "og:image:secure_url": `${baseUrl}/_vercel/image?url=${encodeURIComponent(`${baseUrl}/og-image.png`)}&w=1200&q=75`,
+    "og:image:type": "image/png",
+    "og:image:width": "1200",
+    "og:image:height": "630",
+    "og:image:alt": "Ashwin Gopalsamy - Software Engineer specializing in cloud-native backend development",
+    "og:image:url": `${baseUrl}/_vercel/image?url=${encodeURIComponent(`${baseUrl}/og-image.png`)}&w=1200&q=75`,
+    "og:url": baseUrl,
+    "og:site_name": "Ashwin Gopalsamy",
+    "og:title": "Ashwin Gopalsamy | Cloud-Native Backend Engineer & Distributed Systems Specialist",
+    "og:description": "Software engineer with 4+ years experience in Go, AWS, and event-sourced microservices architecture for fintech products.",
+    "whatsapp:image": `${baseUrl}/_vercel/image?url=${encodeURIComponent(`${baseUrl}/og-image.png`)}&w=1200&q=75`,
+    "whatsapp:title": "Ashwin Gopalsamy | Cloud-Native Backend Engineer & Distributed Systems Specialist",
+    "whatsapp:description": "Software engineer with 4+ years experience in Go, AWS, and event-sourced microservices architecture for fintech products.",
   },
   other: {
     "og:image:secure_url": `${baseUrl}/og-image.png`,
