@@ -58,7 +58,7 @@ export default function ClientLayout({
             <link rel="me" href="https://twitter.com/ashwingopalsamy" />
 
             {/* Preload critical assets */}
-            <link rel="preload" href="/dp.jpg" as="image" fetchPriority="high" />
+            <link rel="preload" href="/dp.jpeg" as="image" fetchPriority="high" />
             <link
                 rel="preload"
                 href="/logo-dark.png"
@@ -137,7 +137,7 @@ export default function ClientLayout({
                     "@type": "Person",
                     name: "Ashwin Gopalsamy",
                     url: baseUrl,
-                    image: `${baseUrl}/dp.jpg`,
+                    image: `${baseUrl}/dp.jpeg`,
                     sameAs: [
                         "https://github.com/ashwingopalsamy",
                         "https://linkedin.com/in/ashwingopalsamy",

@@ -39,10 +39,10 @@ export default function HomePage() {
                                         transition={{ duration: 0.3 }}
                                     >
                                         <Image
-                                            src="/dp.jpg"
+                                            src="/dp.jpeg"
                                             alt="Ashwin Gopalsamy portrait showing a professional headshot"
                                             fill
-                                            className="object-cover"
+                                            className="object-cover object-[center_30%]"
                                             priority
                                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                             quality={90}

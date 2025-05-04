@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    type: "profile",
+    type: "website",
     locale: "en_US",
     url: baseUrl,
     title: "Ashwin Gopalsamy | Cloud-Native Backend Engineer & Distributed Systems Specialist",
@@ -67,6 +67,7 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         alt: "Ashwin Gopalsamy - Software Engineer specializing in cloud-native backend development",
+        type: "image/png",
       },
     ],
   },
@@ -77,6 +78,13 @@ export const metadata: Metadata = {
         "Software engineer specializing in Go, AWS, and distributed systems with experience building fintech products at scale.",
     creator: "@ashwingopalsamy",
     images: [`${baseUrl}/og-image.png`],
+  },
+  other: {
+    "og:image:secure_url": `${baseUrl}/og-image.png`,
+    "og:image:type": "image/png",
+    "og:image:width": "1200",
+    "og:image:height": "630",
+    "og:image:alt": "Ashwin Gopalsamy - Software Engineer specializing in cloud-native backend development",
   },
   verification: {
     google: "google-site-verification-code", // Replace with actual verification code
