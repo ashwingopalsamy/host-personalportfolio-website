@@ -9,7 +9,7 @@ const baseUrl = "https://ashwingopalsamy.in"
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Ashwin Gopalsamy | Cloud-Native Backend Engineer & Distributed Systems Specialist",
+    default: "Ashwin Gopalsamy",
     template: "%s | Ashwin Gopalsamy",
   },
   description:
@@ -57,13 +57,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: baseUrl,
-    title: "Ashwin Gopalsamy | Cloud-Native Backend Engineer & Distributed Systems Specialist",
+    title: "Ashwin Gopalsamy",
     description:
         "Software engineer with 4+ years experience in Go, AWS, and event-sourced microservices architecture for fintech products.",
     siteName: "Ashwin Gopalsamy",
     images: [
       {
-        url: `${baseUrl}/_vercel/image?url=${encodeURIComponent(`${baseUrl}/og-image.png`)}&w=1200&q=75`,
+        url: `${baseUrl}/og-image.png`,
         width: 1200,
         height: 630,
         alt: "Ashwin Gopalsamy - Software Engineer specializing in cloud-native backend development",
@@ -73,34 +73,26 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ashwin Gopalsamy | Cloud-Native Backend Engineer",
+    title: "Ashwin Gopalsamy",
     description:
         "Software engineer specializing in Go, AWS, and distributed systems with experience building fintech products at scale.",
     creator: "@ashwingopalsamy",
-    images: [`${baseUrl}/_vercel/image?url=${encodeURIComponent(`${baseUrl}/og-image.png`)}&w=1200&q=75`],
+    images: [`${baseUrl}/og-image.png`],
   },
   other: {
-    "og:image": `${baseUrl}/_vercel/image?url=${encodeURIComponent(`${baseUrl}/og-image.png`)}&w=1200&q=75`,
-    "og:image:secure_url": `${baseUrl}/_vercel/image?url=${encodeURIComponent(`${baseUrl}/og-image.png`)}&w=1200&q=75`,
-    "og:image:type": "image/png",
-    "og:image:width": "1200",
-    "og:image:height": "630",
-    "og:image:alt": "Ashwin Gopalsamy - Software Engineer specializing in cloud-native backend development",
-    "og:image:url": `${baseUrl}/_vercel/image?url=${encodeURIComponent(`${baseUrl}/og-image.png`)}&w=1200&q=75`,
-    "og:url": baseUrl,
-    "og:site_name": "Ashwin Gopalsamy",
-    "og:title": "Ashwin Gopalsamy | Cloud-Native Backend Engineer & Distributed Systems Specialist",
-    "og:description": "Software engineer with 4+ years experience in Go, AWS, and event-sourced microservices architecture for fintech products.",
-    "whatsapp:image": `${baseUrl}/_vercel/image?url=${encodeURIComponent(`${baseUrl}/og-image.png`)}&w=1200&q=75`,
-    "whatsapp:title": "Ashwin Gopalsamy | Cloud-Native Backend Engineer & Distributed Systems Specialist",
-    "whatsapp:description": "Software engineer with 4+ years experience in Go, AWS, and event-sourced microservices architecture for fintech products.",
-  },
-  other: {
+    "og:image": `${baseUrl}/og-image.png`,
     "og:image:secure_url": `${baseUrl}/og-image.png`,
     "og:image:type": "image/png",
     "og:image:width": "1200",
     "og:image:height": "630",
     "og:image:alt": "Ashwin Gopalsamy - Software Engineer specializing in cloud-native backend development",
+    "og:url": baseUrl,
+    "og:site_name": "Ashwin Gopalsamy",
+    "og:title": "Ashwin Gopalsamy",
+    "og:description": "Software engineer with 4+ years experience in Go, AWS, and event-sourced microservices architecture for fintech products.",
+    "whatsapp:image": `${baseUrl}/_vercel/image?url=${encodeURIComponent(`${baseUrl}/og-image.png`)}&w=1200&q=75`,
+    "whatsapp:title": "Ashwin Gopalsamy",
+    "whatsapp:description": "Software engineer with 4+ years experience in Go, AWS, and event-sourced microservices architecture for fintech products.",
   },
   verification: {
     google: "google-site-verification-code", // Replace with actual verification code

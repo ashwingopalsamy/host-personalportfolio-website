@@ -66,7 +66,7 @@ export default function HomePage() {
                                                 Expertise in distributed systems, cloud-native architecture, and software product development.
                                             </p>
                                             <p className="text-xl text-muted-foreground">
-                                                Currently: Engineering, Core - Solaris SE.
+                                                Currently: Staff Software Engineer - VISA.
                                                 <br />
                                             </p>
                                         </div>

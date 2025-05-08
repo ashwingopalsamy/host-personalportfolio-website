@@ -8,21 +8,38 @@ import { Button } from "@/components/ui/button"
 import { Calendar, ChevronDown, ChevronUp, Download, ExternalLink } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { useTheme } from "next-themes"
-import { useMediaQuery } from "@/hooks/use-media-query"
 
 export function ExperienceSection() {
     const [expandedExperience, setExpandedExperience] = useState<number | null>(null)
     const { theme } = useTheme()
-    const isMobile = useMediaQuery("(max-width: 640px)")
     const sectionRef = useRef<HTMLElement>(null)
     const isInView = useInView(sectionRef, { once: true, margin: "-100px 0px" })
 
     const experiences = [
         {
+            company: "VISA",
+            logo: "/VISA.svg",
+            role: "Staff Software Engineer",
+            period: "May 2025 - Present",
+            description: [
+                "At VISA, I work on Pismo; a modern, cloud-native platform powering banks and fintechs across the globe with scalable, secure financial infrastructure.",
+                "Contributing to the platform thats safeguarding substantially high-volume system interactions with real-time decisioning and reliability at scale.",
+                "Immersing in VISA's global-grade engineering practices, while aligning early efforts toward platform integrity, modularity, and long-term resilience.",
+            ],
+            skills: [
+                "Go",
+                "Distributed Systems",
+                "Cloud Native Architecture",
+                "Event-driven Architecture",
+                "Microservices",
+            ],
+            link: "https://www.visa.com",
+        },
+        {
             company: "Solaris SE",
             logo: "/Solaris.svg",
             role: "Professional Engineer",
-            period: "January 2022 - April 2025",
+            period: "June 2022 - April 2025",
             description: [
                 "Owning the Accounts Domain within the Core Banking unit, home to foundational systems powering accounts lifecycle and interest-based financial products.",
                 "Designed and implemented cloud-native microservices using an event-sourced architecture - engineered for resilience, uptime, and scale.",
@@ -69,8 +86,8 @@ export function ExperienceSection() {
             period: "4 months",
             description: [
                 "Learnt & engaged in the development of an open-source project over a 4-month span, utilizing Microsoft Azure Cloud and GitHub, as a key participant in Microsoft's 'FutureReadyTalent' Internship Program.",
-                "Built Bud.ai - ‘The Student Twin’, an open-source project developed on Microsoft Azure as part of the FutureReadyTalent program.",
-                "Collaborated via GitHub and deployed cloud-native features using Azure’s AI tooling, getting hands-on exposure to open-source practices and scalable app design.",
+                "Built Bud.ai - 'The Student Twin', an open-source project developed on Microsoft Azure as part of the FutureReadyTalent program.",
+                "Collaborated via GitHub and deployed cloud-native features using Azure's AI tooling, getting hands-on exposure to open-source practices and scalable app design.",
             ],
             skills: ["Microsoft Azure", "JavaScript", "Git"],
             link: "https://news.microsoft.com/en-in/microsoft-collaborates-with-aicte-nasscom-ey-github-and-quess-corp-to-empower-indias-youth-with-tech-skills-to-be-job-ready/",
@@ -81,7 +98,7 @@ export function ExperienceSection() {
             role: "i++ Trainee",
             period: "3 months",
             description: [
-                "Selected as one of 30 trainees for Swiggy’s i++ engineering program - an immersive bootcamp focused on backend engineering at scale.",
+                "Selected as one of 30 trainees for Swiggy's i++ engineering program - an immersive bootcamp focused on backend engineering at scale.",
                 "Trained hands-on with real-world engineering tools and patterns - covering Go, gRPC, Kafka, AWS, and distributed databases.",
                 "Learned through mentorship, pair programming, and internal engineering talks that shaped a strong foundation in building production-grade systems.",
                 "This experience played a pivotal role in shaping my transition into backend product development, grounding me in modern cloud-native practices very early in my career.",
@@ -164,7 +181,7 @@ export function ExperienceSection() {
                                         >
                                             <div className="flex items-center space-x-4">
                                                 <motion.div
-                                                    className="w-16 h-16 bg-secondary flex items-center justify-center rounded-xl overflow-hidden"
+                                                    className="w-16 h-16 bg-white flex items-center justify-center rounded-xl overflow-hidden"
                                                     whileHover={{ scale: 1.05, rotate: 5 }}
                                                     transition={{ duration: 0.3 }}
                                                 >

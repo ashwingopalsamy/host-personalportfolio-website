@@ -73,7 +73,6 @@ export default function ClientLayout({
                 media="(prefers-color-scheme: light)"
                 fetchPriority="high"
             />
-            <link rel="preload" href="/Solaris.svg" as="image" />
 
             {/* DNS prefetch for external resources */}
             <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
@@ -81,7 +80,7 @@ export default function ClientLayout({
             <link rel="dns-prefetch" href="https://plausible.io" />
 
             {/* OpenGraph tags */}
-            <meta property="og:title" content="Ashwin Gopalsamy | Cloud-Native Backend Engineer" />
+            <meta property="og:title" content="Ashwin Gopalsamy" />
             <meta
                 property="og:description"
                 content="Software engineer specializing in cloud-native backend development, Go, and distributed systems with 4+ years of fintech experience"
@@ -94,7 +93,7 @@ export default function ClientLayout({
             {/* Twitter Card tags */}
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:creator" content="@ashwingopalsamy" />
-            <meta name="twitter:title" content="Ashwin Gopalsamy | Cloud-Native Backend Engineer" />
+            <meta name="twitter:title" content="Ashwin Gopalsamy" />
             <meta
                 name="twitter:description"
                 content="Software engineer specializing in Go, AWS, and distributed systems with experience building fintech products at scale."
@@ -144,10 +143,10 @@ export default function ClientLayout({
                         "https://twitter.com/ashwingopalsamy",
                         "https://ashwingopalsamy.substack.com",
                     ],
-                    jobTitle: "Software Engineer",
+                    jobTitle: "Staff Software Engineer",
                     worksFor: {
                         "@type": "Organization",
-                        name: "Solaris SE",
+                        name: "VISA",
                     },
                     alumniOf: [
                         {
@@ -178,10 +177,10 @@ export default function ClientLayout({
                     ],
                     hasOccupation: {
                         "@type": "Occupation",
-                        name: "Software Engineer",
+                        name: "Staff Software Engineer",
                         occupationLocation: {
                             "@type": "City",
-                            name: "Berlin",
+                            name: "India",
                         },
                         skills: "Go, AWS, Kubernetes, Terraform, Distributed Systems, Microservices",
                     },
