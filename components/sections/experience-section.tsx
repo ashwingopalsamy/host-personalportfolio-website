@@ -8,12 +8,10 @@ import { Button } from "@/components/ui/button"
 import { Calendar, ChevronDown, ChevronUp, Download, ExternalLink } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { useTheme } from "next-themes"
-import { useMediaQuery } from "@/hooks/use-media-query"
 
 export function ExperienceSection() {
     const [expandedExperience, setExpandedExperience] = useState<number | null>(null)
     const { theme } = useTheme()
-    const isMobile = useMediaQuery("(max-width: 640px)")
     const sectionRef = useRef<HTMLElement>(null)
     const isInView = useInView(sectionRef, { once: true, margin: "-100px 0px" })
 
