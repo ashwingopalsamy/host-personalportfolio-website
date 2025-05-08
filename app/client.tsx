@@ -35,8 +35,8 @@ const inter = Inter({
 const baseUrl = "https://ashwingopalsamy.in"
 
 export default function ClientLayout({
-                                         children,
-                                     }: Readonly<{
+    children,
+}: Readonly<{
     children: React.ReactNode
 }>) {
     return (
@@ -148,13 +148,11 @@ export default function ClientLayout({
                     worksFor: {
                         "@type": "Organization",
                         name: "Solaris SE",
-                        url: "https://www.solarisgroup.com",
                     },
                     alumniOf: [
                         {
                             "@type": "CollegeOrUniversity",
                             name: "Hindusthan College of Engineering and Technology",
-                            url: "https://hindusthan.net",
                         },
                     ],
                     knowsAbout: [
@@ -184,13 +182,6 @@ export default function ClientLayout({
                         occupationLocation: {
                             "@type": "City",
                             name: "Berlin",
-                        },
-                        estimatedSalary: {
-                            "@type": "MonetaryAmountDistribution",
-                            currency: "EUR",
-                            percentile10: "70000",
-                            percentile50: "85000",
-                            percentile90: "100000",
                         },
                         skills: "Go, AWS, Kubernetes, Terraform, Distributed Systems, Microservices",
                     },
@@ -246,93 +237,11 @@ export default function ClientLayout({
                             name: "Home",
                             item: baseUrl,
                         },
-                        {
-                            "@type": "ListItem",
-                            position: 2,
-                            name: "Skills",
-                            item: `${baseUrl}/#skills`,
-                        },
-                        {
-                            "@type": "ListItem",
-                            position: 3,
-                            name: "Experience",
-                            item: `${baseUrl}/#experience`,
-                        },
-                        {
-                            "@type": "ListItem",
-                            position: 4,
-                            name: "Projects",
-                            item: `${baseUrl}/#projects`,
-                        },
-                        {
-                            "@type": "ListItem",
-                            position: 5,
-                            name: "Blog",
-                            item: `${baseUrl}/#blog`,
-                        },
-                        {
-                            "@type": "ListItem",
-                            position: 6,
-                            name: "Connect",
-                            item: `${baseUrl}/#connect`,
-                        },
                     ],
                 }),
             }}
         />
 
-        {/* Add JobPosting schema for current role */}
-        <Script
-            id="job-schema"
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-                __html: JSON.stringify({
-                    "@context": "https://schema.org",
-                    "@type": "JobPosting",
-                    title: "Software Engineer",
-                    description:
-                        "Engineered full lifecycle of 'Credit Card Interest' product generating €30M+ annual revenue. Owns 'Accounts Domain' handling 20M+ daily transactions on AWS, Kubernetes, and Terraform stack. Built 100% cloud-native, event-sourced microservices for Core-Banking achieving 99.999% uptime.",
-                    datePosted: "2022-06-01",
-                    validThrough: "2025-04-24",
-                    employmentType: "FULL_TIME",
-                    hiringOrganization: {
-                        "@type": "Organization",
-                        name: "Solaris SE",
-                        sameAs: "https://www.solarisgroup.com",
-                    },
-                    jobLocation: {
-                        "@type": "Place",
-                        address: {
-                            "@type": "PostalAddress",
-                            addressCountry: "Germany",
-                        },
-                    },
-                    baseSalary: {
-                        "@type": "MonetaryAmount",
-                        currency: "EUR",
-                        value: {
-                            "@type": "QuantitativeValue",
-                            minValue: 70000,
-                            maxValue: 100000,
-                            unitText: "YEAR",
-                        },
-                    },
-                    skills:
-                        "Go, AWS, Kubernetes, Terraform, Distributed Systems, Microservices, Event-Sourced Systems, PostgreSQL, DynamoDB",
-                }),
-            }}
-        />
-
-        {/* Privacy-focused analytics */}
-        <Script
-            async
-            defer
-            data-domain="ashwingopalsamy.in"
-            src="https://plausible.io/js/plausible.js"
-            strategy="afterInteractive"
-        />
-
-        {/* Vercel Web Vitals monitoring */}
         <SpeedInsights />
         <Analytics />
         </body>
