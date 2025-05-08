@@ -1,9 +1,43 @@
 import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 
+// Rate limiting configuration
+const RATE_LIMIT = 100 // requests
+const RATE_LIMIT_WINDOW = 60 * 60 * 1000 // 1 hour in milliseconds
+
+// In-memory store for rate limiting
+const ipRequestCounts = new Map<string, { count: number; resetTime: number }>()
+
 export function middleware(request: NextRequest) {
     // Clone the response
     const response = NextResponse.next()
+
+    // Rate limiting logic
+    const ip = request.headers.get('x-forwarded-for')?.split(',')[0] ?? 'anonymous'
+    const now = Date.now()
+    const requestData = ipRequestCounts.get(ip)
+
+    if (requestData) {
+        if (now > requestData.resetTime) {
+            // Reset if window has passed
+            ipRequestCounts.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW })
+        } else if (requestData.count >= RATE_LIMIT) {
+            // Rate limit exceeded
+            return new NextResponse('Too Many Requests', {
+                status: 429,
+                headers: {
+                    'Retry-After': String(Math.ceil((requestData.resetTime - now) / 1000))
+                }
+            })
+        } else {
+            // Increment count
+            requestData.count++
+            ipRequestCounts.set(ip, requestData)
+        }
+    } else {
+        // First request from this IP
+        ipRequestCounts.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW })
+    }
 
     // Add security headers with strict CSP
     const securityHeaders = {
@@ -29,7 +63,14 @@ export function middleware(request: NextRequest) {
         "Permissions-Policy": "camera=(), microphone=(), geolocation=(), interest-cohort=()",
         "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
         "X-DNS-Prefetch-Control": "on",
-        "Cache-Control": "public, max-age=31536000, immutable"
+        "Cache-Control": "public, max-age=31536000, immutable",
+        // Additional security headers
+        "Cross-Origin-Embedder-Policy": "require-corp",
+        "Cross-Origin-Opener-Policy": "same-origin",
+        "Cross-Origin-Resource-Policy": "same-origin",
+        "X-Permitted-Cross-Domain-Policies": "none",
+        "X-Download-Options": "noopen",
+        "X-Powered-By": "Next.js"
     }
 
     // Set the security headers
