@@ -81,7 +81,7 @@ export default function ClientLayout({
             <link rel="dns-prefetch" href="https://plausible.io" />
 
             {/* OpenGraph tags */}
-            <meta property="og:title" content="Ashwin Gopalsamy | Cloud-Native Backend Engineer" />
+            <meta property="og:title" content="Ashwin Gopalsamy" />
             <meta
                 property="og:description"
                 content="Software engineer specializing in cloud-native backend development, Go, and distributed systems with 4+ years of fintech experience"
@@ -94,7 +94,7 @@ export default function ClientLayout({
             {/* Twitter Card tags */}
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:creator" content="@ashwingopalsamy" />
-            <meta name="twitter:title" content="Ashwin Gopalsamy | Cloud-Native Backend Engineer" />
+            <meta name="twitter:title" content="Ashwin Gopalsamy" />
             <meta
                 name="twitter:description"
                 content="Software engineer specializing in Go, AWS, and distributed systems with experience building fintech products at scale."
