@@ -73,7 +73,6 @@ export default function ClientLayout({
                 media="(prefers-color-scheme: light)"
                 fetchPriority="high"
             />
-            <link rel="preload" href="/Solaris.svg" as="image" />
 
             {/* DNS prefetch for external resources */}
             <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
@@ -144,10 +143,10 @@ export default function ClientLayout({
                         "https://twitter.com/ashwingopalsamy",
                         "https://ashwingopalsamy.substack.com",
                     ],
-                    jobTitle: "Software Engineer",
+                    jobTitle: "Staff Software Engineer",
                     worksFor: {
                         "@type": "Organization",
-                        name: "Solaris SE",
+                        name: "VISA",
                     },
                     alumniOf: [
                         {
@@ -178,10 +177,10 @@ export default function ClientLayout({
                     ],
                     hasOccupation: {
                         "@type": "Occupation",
-                        name: "Software Engineer",
+                        name: "Staff Software Engineer",
                         occupationLocation: {
                             "@type": "City",
-                            name: "Berlin",
+                            name: "India",
                         },
                         skills: "Go, AWS, Kubernetes, Terraform, Distributed Systems, Microservices",
                     },
