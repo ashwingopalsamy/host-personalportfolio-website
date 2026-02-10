@@ -47,6 +47,7 @@ export const profile = {
   },
   links: {
     website: `${BASE_URL}/`,
+    profilePage: absoluteUrl("/ashwin-gopalsamy"),
     resume: absoluteUrl("/Resume_AshwinGopalsamy.pdf"),
     humans: absoluteUrl("/humans.txt"),
   },
@@ -137,6 +138,7 @@ export function buildAiSummary() {
       contact: profile.contact,
       portfolio: {
         website: profile.links.website,
+        profilePage: profile.links.profilePage,
         resume: profile.links.resume,
         humansTxt: profile.links.humans,
       },
@@ -148,6 +150,7 @@ export function buildAiSummary() {
       format: "application/json",
       purpose: "AI assistant retrieval and factual grounding",
       discovery: {
+        profilePage: profile.links.profilePage,
         llms: absoluteUrl(AI_DISCOVERY_PATHS.llms),
         llmsFull: absoluteUrl(AI_DISCOVERY_PATHS.llmsFull),
         aiManifest: absoluteUrl(AI_DISCOVERY_PATHS.aiManifest),
@@ -184,6 +187,7 @@ export function buildLlmsTxt() {
     ...profile.focusAreas.map((area) => `- ${area}`),
     "",
     "## Key Links",
+    `- Canonical profile: ${profile.links.profilePage}`,
     `- Resume: ${profile.links.resume}`,
     `- GitHub: ${profile.contact.github}`,
     `- LinkedIn: ${profile.contact.linkedin}`,
@@ -245,6 +249,7 @@ export function buildLlmsFullTxt() {
     "",
     "## Contact and Identity",
     `- Website: ${profile.links.website}`,
+    `- Canonical profile: ${profile.links.profilePage}`,
     `- Email: ${profile.contact.email}`,
     `- GitHub: ${profile.contact.github}`,
     `- LinkedIn: ${profile.contact.linkedin}`,
@@ -264,6 +269,7 @@ export function buildAiTxt() {
     `summary: ${profile.summary}`,
     "",
     "[discovery]",
+    `profile_page = "${profile.links.profilePage}"`,
     `llms = "${absoluteUrl(AI_DISCOVERY_PATHS.llms)}"`,
     `llms_full = "${absoluteUrl(AI_DISCOVERY_PATHS.llmsFull)}"`,
     `summary_json = "${absoluteUrl(AI_DISCOVERY_PATHS.summaryJson)}"`,

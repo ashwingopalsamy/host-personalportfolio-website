@@ -71,6 +71,16 @@ export default function HomePage() {
                                             <p className="text-xl text-muted-foreground">
                                                 Currently: Staff Software Engineer at VISA.
                                             </p>
+                                            <p className="text-base text-muted-foreground">
+                                                Canonical profile:{" "}
+                                                <Link
+                                                    href="/ashwin-gopalsamy"
+                                                    className="text-primary underline-offset-4 hover:underline"
+                                                    aria-label="Open Ashwin Gopalsamy canonical profile page"
+                                                >
+                                                    ashwingopalsamy.in/ashwin-gopalsamy
+                                                </Link>
+                                            </p>
                                         </div>
                                     </div>
 

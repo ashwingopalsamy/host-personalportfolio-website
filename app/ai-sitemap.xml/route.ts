@@ -8,6 +8,7 @@ type SitemapUrl = {
 }
 
 const AI_SITEMAP_URLS: SitemapUrl[] = [
+  { loc: `${BASE_URL}/ashwin-gopalsamy`, changefreq: "weekly", priority: "0.95" },
   { loc: `${BASE_URL}/llms.txt`, changefreq: "weekly", priority: "0.9" },
   { loc: `${BASE_URL}/llms-full.txt`, changefreq: "weekly", priority: "0.8" },
   { loc: `${BASE_URL}/ai.txt`, changefreq: "weekly", priority: "0.8" },

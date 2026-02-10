@@ -4,6 +4,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 This portfolio exposes machine-readable surfaces for AI assistants and AI search crawlers:
 
+- `/ashwin-gopalsamy` - canonical profile page with `ProfilePage` and `Person` schema.
 - `/api/ai-summary` - structured JSON profile with role, skills, experience, and links.
 - `/llms.txt` - compact LLM-friendly profile.
 - `/llms-full.txt` - expanded LLM profile with deeper context.
