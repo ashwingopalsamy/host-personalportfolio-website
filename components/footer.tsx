@@ -3,26 +3,24 @@
 import { Github, Linkedin, Twitter } from "lucide-react"
 import { GlassContainer } from "@/components/ui/glass-container"
 import { motion } from "framer-motion"
-import { useTheme } from "next-themes"
 import { cn } from "@/lib/utils"
 import { useMediaQuery, breakpoints } from "@/hooks/use-media-query"
 
 export function Footer() {
-  const { theme } = useTheme()
   const isMobile = useMediaQuery(breakpoints.sm)
 
   return (
-      <footer className="py-6 w-full">
+      <footer className="w-full py-8">
         <div className="container-custom">
           <div className={cn("flex justify-center", isMobile && "px-4")}>
             <GlassContainer
                 className={cn(
-                    "rounded-full w-full",
-                    isMobile ? "px-5 py-6" : "px-8 py-4"
+                    "w-full rounded-full",
+                    isMobile ? "px-5 py-6" : "px-8 py-4",
                 )}
             >
-              <div className="flex flex-col md:flex-row items-center justify-between">
-                <div className="flex items-center gap-6">
+              <div className="flex flex-col items-center justify-between gap-3 md:flex-row md:gap-6">
+                <div className="flex items-center gap-5">
                   <p className="text-lg font-medium">Ashwin Gopalsamy.</p>
 
                   <div className="flex items-center gap-4">
@@ -36,7 +34,7 @@ export function Footer() {
                         <Github
                             className={cn(
                                 "w-5 h-5 transition-colors",
-                                theme === "light" ? "text-black/60 hover:text-black" : "text-white/60 hover:text-white",
+                                "text-foreground/60 hover:text-foreground",
                             )}
                         />
                       </a>
@@ -51,7 +49,7 @@ export function Footer() {
                         <Linkedin
                             className={cn(
                                 "w-5 h-5 transition-colors",
-                                theme === "light" ? "text-black/60 hover:text-black" : "text-white/60 hover:text-white",
+                                "text-foreground/60 hover:text-foreground",
                             )}
                         />
                       </a>
@@ -66,7 +64,7 @@ export function Footer() {
                         <Twitter
                             className={cn(
                                 "w-5 h-5 transition-colors",
-                                theme === "light" ? "text-black/60 hover:text-black" : "text-white/60 hover:text-white",
+                                "text-foreground/60 hover:text-foreground",
                             )}
                         />
                       </a>
@@ -74,8 +72,8 @@ export function Footer() {
                   </div>
                 </div>
 
-                <div className={cn("text-sm mt-2 md:mt-0", theme === "light" ? "text-black/60" : "text-white/60")}>
-                  no rights reserved. design inspired from anaskhan.me
+                <div className="text-sm text-foreground/60 md:mt-0">
+                  no rights reserved. design inspired by anaskhan.me
                 </div>
               </div>
             </GlassContainer>

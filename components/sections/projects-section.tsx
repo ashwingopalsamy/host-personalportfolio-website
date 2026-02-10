@@ -6,12 +6,10 @@ import { cn } from "@/lib/utils"
 import { GlassContainer } from "@/components/ui/glass-container"
 import { motion } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
-import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
 
 export function ProjectsSection() {
   const [hoveredProject, setHoveredProject] = useState<number | null>(null)
-  const { theme } = useTheme()
 
   const projects = [
     {
@@ -75,9 +73,9 @@ export function ProjectsSection() {
   return (
       <section className="py-12 pt-32" id="projects" aria-labelledby="projects-heading" role="region">
         <div className="container-custom">
-          <GlassContainer className="p-8">
+          <GlassContainer className="p-6 md:p-8">
             <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={false}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
@@ -86,8 +84,8 @@ export function ProjectsSection() {
               <h2 id="projects-heading" className="section-title">
                 PROJECTS
               </h2>
-              <p className={cn("text-lg max-w-3xl", theme === "light" ? "text-black/70" : "text-white/70")}>
-                A selection of my disclosable personal works across the tech spectrum.
+              <p className="max-w-3xl text-lg text-muted-foreground">
+                A selection of my published and personal projects across the tech spectrum.
               </p>
             </motion.div>
 
@@ -98,14 +96,14 @@ export function ProjectsSection() {
                 return (
                   <motion.div
                       key={index}
-                      initial={{ opacity: 0, y: 20 }}
+                      initial={false}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, delay: index * 0.05 }}
                       viewport={{ once: true }}
                   >
                     <GlassContainer
                         className={cn(
-                            "p-8 relative overflow-hidden transform transition-all duration-150 ease-out hover:-translate-y-[2px] hover:shadow-xl hover:border-primary/40 border border-transparent",
+                            "relative overflow-hidden border border-transparent p-6 transition-all duration-150 ease-out hover:-translate-y-[2px] hover:border-primary/40 hover:shadow-xl md:p-8",
                         )}
                         intensity="low"
                         onMouseEnter={() => setHoveredProject(index)}
@@ -114,7 +112,7 @@ export function ProjectsSection() {
                       <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
                         <div className="space-y-4 max-w-3xl">
                           <h3 className="heading-md">{project.title}</h3>
-                          <p className={cn("text-lg", theme === "light" ? "text-black/70" : "text-white/70")}>
+                          <p className="text-lg text-muted-foreground">
                             {project.description}
                           </p>
 
@@ -144,25 +142,24 @@ export function ProjectsSection() {
                                       "flex items-center justify-center w-20 h-20 rounded-full transition-all duration-200",
                                       hoveredProject === index
                                           ? "bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))]"
-                                          : theme === "light"
-                                              ? "bg-black/5 text-black"
-                                              : "bg-white/5 text-white",
+                                          : "bg-foreground/5 text-foreground hover:bg-foreground/10",
                                   )}
                                   aria-label={`Visit ${project.title} project`}
                               >
                                 <ArrowUpRight className="w-8 h-8 transition-all duration-200" />
                               </a>
                           ) : (
-                              <div
-                                  className={cn(
-                                      "flex items-center justify-center w-20 h-20 rounded-full border transition-all duration-200 cursor-not-allowed",
-                                      theme === "light"
-                                          ? "border-black/10 bg-black/5 text-black/35"
-                                          : "border-white/10 bg-white/5 text-white/35",
-                                  )}
-                                  aria-label={`${project.title} project link unavailable`}
-                              >
-                                <ArrowUpRight className="w-8 h-8 transition-all duration-200" />
+                              <div className="flex flex-col items-center gap-2">
+                                <div
+                                    className={cn(
+                                        "flex items-center justify-center w-20 h-20 rounded-full border transition-all duration-200 cursor-not-allowed",
+                                        "border-foreground/10 bg-foreground/5 text-foreground/35",
+                                    )}
+                                    aria-label={`${project.title} project link unavailable`}
+                                >
+                                  <ArrowUpRight className="w-8 h-8 transition-all duration-200" />
+                                </div>
+                                <span className="text-xs text-foreground/45">Private</span>
                               </div>
                           )}
                         </motion.div>
@@ -175,7 +172,7 @@ export function ProjectsSection() {
 
             {/* GitHub Link Section */}
             <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={false}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
                 viewport={{ once: true }}
@@ -185,7 +182,7 @@ export function ProjectsSection() {
                   className="w-full max-w-md px-6 py-3 shadow-sm flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-2 rounded-full"
                   intensity="high"
               >
-                <span className="text-lg font-regular text-center sm:text-left">All talk. See code?</span>
+                <span className="text-center text-lg font-normal sm:text-left">All talk. See code?</span>
 
                 <motion.div
                     whileHover={{ scale: 1.01 }}

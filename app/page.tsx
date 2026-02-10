@@ -16,6 +16,9 @@ import { BlogSection } from "@/components/sections/blog-section"
 import { ScrollProgress } from "@/components/scroll-progress"
 
 export default function HomePage() {
+    const secondaryActionClass =
+        "h-12 w-full rounded-full border-muted bg-card px-6 text-base text-muted-foreground transition-colors hover:border-primary hover:bg-primary hover:text-primary-foreground sm:w-auto"
+
     return (
         <div className="flex flex-col gap-6 pb-24 sm:gap-8 md:pb-16">
             <ScrollProgress />
@@ -27,14 +30,14 @@ export default function HomePage() {
             <MobileNavigation />
 
             {/* Hero Section */}
-            <section className="py-12 md:py-20 pt-40 md:pt-48" id="home">
+            <section className="py-12 pt-36 md:py-20 md:pt-44" id="home">
                 <div className="container-custom">
-                    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-                        <GlassContainer className="p-8">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-                                <div className="flex flex-col space-y-6">
+                    <motion.div initial={false} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+                        <GlassContainer className="p-6 md:p-8">
+                            <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-2 md:gap-14">
+                                <div className="flex flex-col space-y-6 md:space-y-7">
                                     <motion.div
-                                        className="relative w-64 h-64 mx-auto md:mx-0 overflow-hidden rounded-3xl"
+                                        className="relative mx-auto h-60 w-60 overflow-hidden rounded-[2rem] ring-1 ring-black/10 dark:ring-white/10 md:mx-0 md:h-64 md:w-64"
                                         whileHover={{ scale: 1.03 }}
                                         transition={{ duration: 0.3 }}
                                     >
@@ -48,36 +51,35 @@ export default function HomePage() {
                                             quality={90}
                                         />
                                     </motion.div>
-                                    <h1 className="heading-xl text-center text-balance md:text-left">Hey, there!</h1>
-                                    <p className="text-xl text-muted-foreground text-center md:text-left">
+                                    <h1 className="heading-xl text-balance text-center leading-tight md:text-left">Hey, there!</h1>
+                                    <p className="text-center text-xl text-muted-foreground md:text-left">
                                         I&#39;m <span className="text-primary font-semibold">Ashwin</span>. I build internet-scale software
                                         systems.
                                     </p>
                                 </div>
 
-                                <div className="flex flex-col space-y-12">
-                                    <div>
+                                <div className="flex max-w-xl flex-col space-y-10 md:space-y-12">
+                                    <div className="space-y-8">
                                         <h2 className="section-title">ABOUT</h2>
-                                        <div className="space-y-8">
+                                        <div className="space-y-7">
                                             <p className="text-xl text-muted-foreground">
                                                 Product Engineer. Blogger. Open-source contributor.
                                             </p>
-                                            <p className="heading-md">
+                                            <p className="heading-md leading-tight">
                                                 Expertise in distributed systems, cloud-native architecture, and software product development.
                                             </p>
                                             <p className="text-xl text-muted-foreground">
-                                                Currently: Staff Software Engineer - VISA.
-                                                <br />
+                                                Currently: Staff Software Engineer at VISA.
                                             </p>
                                         </div>
                                     </div>
 
-                                    <div className="flex flex-wrap gap-3 relative">
-                                        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                                    <div className="relative flex flex-wrap gap-3">
+                                        <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }} className="w-full sm:w-auto">
                                             <Button
                                                 size="lg"
                                                 variant="outline"
-                                                className="rounded-full border-muted bg-card text-muted-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"
+                                                className={secondaryActionClass}
                                                 asChild
                                             >
                                                 <Link
@@ -91,8 +93,12 @@ export default function HomePage() {
                                             </Button>
                                         </motion.div>
 
-                                        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                                            <Button size="lg" className="rounded-full bg-primary hover:bg-primary/90 text-white" asChild>
+                                        <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }} className="w-full sm:w-auto">
+                                            <Button
+                                                size="lg"
+                                                className="h-12 w-full rounded-full bg-primary px-6 text-base text-white hover:bg-primary/90 sm:w-auto"
+                                                asChild
+                                            >
                                                 <a
                                                     href="/Resume_AshwinGopalsamy.pdf"
                                                     target="_blank"
@@ -106,11 +112,11 @@ export default function HomePage() {
                                             </Button>
                                         </motion.div>
 
-                                        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                                        <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }} className="w-full sm:w-auto">
                                             <Button
                                                 size="lg"
                                                 variant="outline"
-                                                className="rounded-full border-muted bg-card text-muted-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"
+                                                className={secondaryActionClass}
                                                 asChild
                                             >
                                                 <a href="mailto:ashwin2125@icloud.com" aria-label="Send Ashwin an email">
@@ -119,11 +125,11 @@ export default function HomePage() {
                                             </Button>
                                         </motion.div>
 
-                                        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                                        <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }} className="w-full sm:w-auto">
                                             <Button
                                                 size="lg"
                                                 variant="outline"
-                                                className="rounded-full border-muted bg-card text-muted-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"
+                                                className={secondaryActionClass}
                                                 asChild
                                             >
                                                 <Link
@@ -146,7 +152,7 @@ export default function HomePage() {
 
             {/* Skills Section */}
             <motion.div
-                initial={{ opacity: 0, y: 30 }}
+                initial={false}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true, margin: "-100px" }}
@@ -156,7 +162,7 @@ export default function HomePage() {
 
             {/* Experience Section */}
             <motion.div
-                initial={{ opacity: 0, y: 30 }}
+                initial={false}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true, margin: "-100px" }}
@@ -166,7 +172,7 @@ export default function HomePage() {
 
             {/* Projects Section */}
             <motion.div
-                initial={{ opacity: 0, y: 30 }}
+                initial={false}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true, margin: "-100px" }}
@@ -176,7 +182,7 @@ export default function HomePage() {
 
             {/* Blog Section */}
             <motion.div
-                initial={{ opacity: 0, y: 30 }}
+                initial={false}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true, margin: "-100px" }}
@@ -186,7 +192,7 @@ export default function HomePage() {
 
             {/* Connect Section */}
             <motion.div
-                initial={{ opacity: 0, y: 30 }}
+                initial={false}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true, margin: "-100px" }}

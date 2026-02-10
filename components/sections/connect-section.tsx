@@ -4,18 +4,14 @@ import { Button } from "@/components/ui/button"
 import { CalendarIcon, MailIcon } from "lucide-react"
 import { GlassContainer } from "@/components/ui/glass-container"
 import { motion } from "framer-motion"
-import { useTheme } from "next-themes"
-import { cn } from "@/lib/utils"
 
 export function ConnectSection() {
-    const { theme } = useTheme()
-
     return (
         <section className="py-12 pt-32" id="connect" aria-labelledby="connect-heading">
             <div className="container-custom">
-                <GlassContainer className="p-8">
+                <GlassContainer className="p-6 md:p-8">
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={false}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
                         viewport={{ once: true }}
@@ -24,15 +20,15 @@ export function ConnectSection() {
                         <h2 id="connect-heading" className="section-title">
                             CONNECT
                         </h2>
-                        <p className={cn("text-lg max-w-3xl", theme === "light" ? "text-black/70" : "text-white/70")}>
+                        <p className="max-w-3xl text-lg text-muted-foreground">
                             Let&#39;s discuss opportunities, collaborations, or just have a chat about technology.
                         </p>
                     </motion.div>
 
-                    <div className="flex flex-col items-center text-center space-y-8 mt-10">
+                    <div className="mt-10 flex flex-col items-center space-y-8 text-center">
                         <motion.h3
                             className="heading-lg"
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={false}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5 }}
                             viewport={{ once: true }}
@@ -41,12 +37,12 @@ export function ConnectSection() {
                         </motion.h3>
 
                         {/* Button Group */}
-                        <div className="flex flex-col md:flex-row items-center justify-center gap-4">
+                        <div className="flex flex-col items-center justify-center gap-4 md:flex-row">
                             {/* Cal.com Button */}
                             <motion.div
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                initial={{ opacity: 0, y: 20 }}
+                                initial={false}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5, delay: 0.1 }}
                                 viewport={{ once: true }}
@@ -54,7 +50,7 @@ export function ConnectSection() {
                             >
                                 <Button
                                     size="lg"
-                                    className="w-full md:w-64 rounded-full bg-primary hover:bg-primary/90 text-white px-6 py-3 text-lg h-auto min-h-[48px]"
+                                    className="h-12 min-h-[48px] w-full rounded-full bg-primary px-6 text-lg text-white hover:bg-primary/90 md:w-64"
                                     asChild
                                 >
                                     <a
@@ -74,7 +70,7 @@ export function ConnectSection() {
                             <motion.div
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                initial={{ opacity: 0, y: 20 }}
+                                initial={false}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5, delay: 0.1 }}
                                 viewport={{ once: true }}
@@ -83,7 +79,7 @@ export function ConnectSection() {
                                 <Button
                                     size="lg"
                                     variant="outline"
-                                    className="w-full md:w-64 rounded-full border-primary text-primary hover:bg-primary hover:text-white transition-all px-6 py-3 text-lg h-auto min-h-[48px]"
+                                    className="h-12 min-h-[48px] w-full rounded-full border-primary px-6 text-lg text-primary transition-all hover:bg-primary hover:text-white md:w-64"
                                     asChild
                                 >
                                     <a
@@ -99,8 +95,8 @@ export function ConnectSection() {
                         </div>
 
                         <motion.p
-                            className={cn("text-lg", theme === "light" ? "text-black/60" : "text-white/60")}
-                            initial={{ opacity: 0 }}
+                            className="max-w-2xl text-lg text-muted-foreground"
+                            initial={false}
                             whileInView={{ opacity: 1 }}
                             transition={{ duration: 0.5, delay: 0.2 }}
                             viewport={{ once: true }}

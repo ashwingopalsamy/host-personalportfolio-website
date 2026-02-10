@@ -21,7 +21,7 @@ export function ThemeToggleDynamicIsland() {
         return (
             <button
                 aria-label="Toggle theme"
-                className="relative flex items-center justify-center h-8 w-8 rounded-full border border-zinc-300 bg-white dark:border-zinc-700 dark:bg-zinc-900"
+                className="relative flex h-8 w-8 items-center justify-center rounded-full border border-black/10 bg-white/80 dark:border-white/20 dark:bg-black/60"
             />
         )
     }
@@ -61,14 +61,14 @@ export function ThemeToggleDynamicIsland() {
     return (
         <motion.button
             onClick={toggleTheme}
-            whileHover={{ scale: 1.1, rotate: 5 }}
-            whileTap={{ scale: 0.9 }}
+            whileHover={{ scale: 1.08, rotate: 4 }}
+            whileTap={{ scale: 0.92 }}
             aria-label="Toggle theme"
             className={cn(
                 "relative flex items-center justify-center h-8 w-8 rounded-full border transition-colors duration-150",
                 activeTheme === "light"
-                    ? "bg-white border-zinc-300 text-black hover:bg-zinc-100"
-                    : "bg-black border-white/20 text-white hover:bg-white/20",
+                    ? "border-black/10 bg-white/80 text-black hover:bg-white"
+                    : "border-white/20 bg-black/60 text-white hover:bg-black/80",
             )}
         >
             <div className="relative w-5 h-5 overflow-hidden">

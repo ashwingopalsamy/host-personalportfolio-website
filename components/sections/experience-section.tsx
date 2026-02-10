@@ -7,7 +7,6 @@ import { motion, useInView } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Calendar, ChevronDown, ChevronUp, Download, ExternalLink } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { useTheme } from "next-themes"
 
 interface Experience {
     company: string
@@ -100,7 +99,6 @@ const experiences: Experience[] = [
 
 export function ExperienceSection() {
     const [expandedExperience, setExpandedExperience] = useState<number | null>(null)
-    const { theme } = useTheme()
     const sectionRef = useRef<HTMLElement>(null)
     const isInView = useInView(sectionRef, { once: true, margin: "-100px 0px" })
 
@@ -127,9 +125,9 @@ export function ExperienceSection() {
             role="region"
         >
             <div className="container-custom">
-                <GlassContainer className="p-8">
+                <GlassContainer className="p-6 md:p-8">
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={false}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
                         viewport={{ once: true }}
@@ -138,7 +136,7 @@ export function ExperienceSection() {
                         <h2 id="experience-heading" className="section-title">
                             EXPERIENCE
                         </h2>
-                        <p className={cn("text-lg max-w-3xl", theme === "light" ? "text-black/70" : "text-white/70")}>
+                        <p className="max-w-3xl text-lg text-muted-foreground">
                             Where I've worked, what I've shipped, and how it all added up.
                         </p>
                     </motion.div>
@@ -147,14 +145,14 @@ export function ExperienceSection() {
                         {experiences.map((exp, index) => (
                             <motion.div
                                 key={index}
-                                initial={{ opacity: 0, y: 20 }}
+                                initial={false}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
                                 viewport={{ once: true, margin: "-100px" }}
                             >
                                 <GlassContainer
                                     className={cn(
-                                        "p-8 relative overflow-hidden transform transition-all duration-150 ease-out hover:-translate-y-[2px] hover:shadow-xl hover:border-primary/40 border border-transparent",
+                                        "relative overflow-hidden border border-transparent p-6 transition-all duration-150 ease-out hover:-translate-y-[2px] hover:border-primary/40 hover:shadow-xl md:p-8",
                                         expandedExperience === index ? "shadow-xl shadow-primary/5" : "",
                                     )}
                                     intensity={expandedExperience === index ? "high" : "medium"}
@@ -162,7 +160,7 @@ export function ExperienceSection() {
                                     <div className="flex flex-col space-y-6">
                                         {/* Header section with company info and toggle */}
                                         <div
-                                            className="flex items-center justify-between cursor-pointer"
+                                            className="flex cursor-pointer items-center justify-between gap-4"
                                             onClick={() => toggleExpand(index)}
                                             role="button"
                                             tabIndex={0}
@@ -177,7 +175,7 @@ export function ExperienceSection() {
                                         >
                                             <div className="flex items-center space-x-4">
                                                 <motion.div
-                                                    className="w-16 h-16 bg-white flex items-center justify-center rounded-xl overflow-hidden"
+                                                    className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-xl border border-black/10 bg-white dark:border-white/10"
                                                     whileHover={{ scale: 1.05, rotate: 5 }}
                                                     transition={{ duration: 0.3 }}
                                                 >
@@ -199,10 +197,7 @@ export function ExperienceSection() {
                                             <div className="flex items-center space-x-4">
                                                 <div className="text-right hidden md:block">
                                                     <div
-                                                        className={cn(
-                                                            "px-4 py-1 rounded-full text-sm",
-                                                            theme === "light" ? "bg-black/5" : "bg-white/5",
-                                                        )}
+                                                        className="rounded-full bg-foreground/5 px-4 py-1 text-sm"
                                                     >
                                                         <div className="flex items-center">
                                                             <Calendar className="h-3 w-3 mr-1.5 text-primary" />
@@ -211,10 +206,7 @@ export function ExperienceSection() {
                                                     </div>
                                                     {exp.secondPeriod && (
                                                         <div
-                                                            className={cn(
-                                                                "px-4 py-1 mt-1 rounded-full text-xs",
-                                                                theme === "light" ? "bg-black/5" : "bg-white/5",
-                                                            )}
+                                                            className="mt-1 rounded-full bg-foreground/5 px-4 py-1 text-xs"
                                                         >
                                                             <div className="flex items-center">
                                                                 <Calendar className="h-2.5 w-2.5 mr-1.5 text-primary" />
@@ -226,13 +218,12 @@ export function ExperienceSection() {
                                                 <Button
                                                     variant="ghost"
                                                     size="icon"
+                                                    aria-label={`${expandedExperience === index ? "Collapse" : "Expand"} ${exp.company} experience`}
                                                     className={cn(
                                                         "rounded-full transition-all duration-300",
                                                         expandedExperience === index
                                                             ? "bg-primary text-white hover:bg-primary/90"
-                                                            : theme === "light"
-                                                                ? "bg-black/10 hover:bg-black/20"
-                                                                : "bg-white/10 hover:bg-white/20",
+                                                            : "bg-foreground/10 hover:bg-foreground/20",
                                                     )}
                                                 >
                                                     {expandedExperience === index ? (
@@ -247,10 +238,7 @@ export function ExperienceSection() {
                                         {/* Mobile period display */}
                                         <div className="md:hidden">
                                             <div
-                                                className={cn(
-                                                    "px-4 py-1 rounded-full text-sm inline-block",
-                                                    theme === "light" ? "bg-black/5" : "bg-white/5",
-                                                )}
+                                                className="inline-block rounded-full bg-foreground/5 px-4 py-1 text-sm"
                                             >
                                                 <div className="flex items-center">
                                                     <Calendar className="h-3 w-3 mr-1.5 text-primary" />
@@ -259,10 +247,7 @@ export function ExperienceSection() {
                                             </div>
                                             {exp.secondPeriod && (
                                                 <div
-                                                    className={cn(
-                                                        "px-4 py-1 mt-1 rounded-full text-xs inline-block ml-2",
-                                                        theme === "light" ? "bg-black/5" : "bg-white/5",
-                                                    )}
+                                                    className="ml-2 mt-1 inline-block rounded-full bg-foreground/5 px-4 py-1 text-xs"
                                                 >
                                                     <div className="flex items-center">
                                                         <Calendar className="h-2.5 w-2.5 mr-1.5 text-primary" />
@@ -285,9 +270,12 @@ export function ExperienceSection() {
                                             <div className="pt-4 space-y-6">
                                                 <div>
                                                     <h4 className="text-lg font-medium mb-3">Responsibilities & Achievements</h4>
-                                                    <ul className="list-disc pl-5 space-y-2 text-white/80">
+                                                    <ul className="list-disc space-y-2 pl-5">
                                                         {exp.description.map((item, i) => (
-                                                            <li key={i} className={theme === "light" ? "text-black/80" : "text-white/80"}>
+                                                            <li
+                                                                key={i}
+                                                                className="leading-relaxed text-foreground/80"
+                                                            >
                                                                 {item}
                                                             </li>
                                                         ))}
@@ -356,7 +344,7 @@ export function ExperienceSection() {
 
                     {/* Resume CTA Section - Updated for better mobile responsiveness */}
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={false}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.3 }}
                         viewport={{ once: true }}
@@ -366,7 +354,7 @@ export function ExperienceSection() {
                             className="aspect-auto w-full max-w-md px-6 py-3 shadow-sm flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-2"
                             intensity="high"
                         >
-                            <span className="text-lg font-regular text-center sm:text-left">Sounds interesting?</span>
+                            <span className="text-center text-lg font-normal sm:text-left">Sounds interesting?</span>
                             <motion.div
                                 whileHover={{ scale: 1.01 }}
                                 whileTap={{ scale: 0.95 }}

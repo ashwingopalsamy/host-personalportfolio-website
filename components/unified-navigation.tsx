@@ -34,6 +34,32 @@ export function UnifiedNavigation() {
     }, [])
 
     useEffect(() => {
+        if (!mobileMenuOpen) return
+
+        const handleEscape = (event: KeyboardEvent) => {
+            if (event.key === "Escape") setMobileMenuOpen(false)
+        }
+
+        const previousOverflow = document.body.style.overflow
+        document.body.style.overflow = "hidden"
+        document.addEventListener("keydown", handleEscape)
+
+        return () => {
+            document.body.style.overflow = previousOverflow
+            document.removeEventListener("keydown", handleEscape)
+        }
+    }, [mobileMenuOpen])
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth >= 768) setMobileMenuOpen(false)
+        }
+
+        window.addEventListener("resize", handleResize)
+        return () => window.removeEventListener("resize", handleResize)
+    }, [])
+
+    useEffect(() => {
         let ticking = false
 
         const handleScroll = () => {
@@ -68,7 +94,7 @@ export function UnifiedNavigation() {
         return () => window.removeEventListener("scroll", handleScroll)
     }, [])
 
-    const scrollToElement = (element: HTMLElement, duration = 180) => {
+    const scrollToElement = (element: HTMLElement, duration = 220) => {
         const start = window.scrollY
         const targetY = Math.max(
             0,
@@ -91,8 +117,10 @@ export function UnifiedNavigation() {
     }
 
     const handleNavClick = (href: string) => {
+        setMobileMenuOpen(false)
+
         if (href === "#") {
-            scrollToElement(document.body, 220)
+            scrollToElement(document.body, 260)
             return
         }
 
@@ -112,7 +140,7 @@ export function UnifiedNavigation() {
     return (
         <>
             <motion.div
-                className="fixed top-6 left-0 right-0 z-[100] mx-auto w-full max-w-[95%]"
+                className="fixed top-5 left-0 right-0 z-[100] mx-auto w-full max-w-[96%] sm:top-6 sm:max-w-[95%]"
                 initial={{ y: -100, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
@@ -120,7 +148,7 @@ export function UnifiedNavigation() {
                 <GlassContainer
                     className={cn(
                         "px-4 py-3 transition-all duration-300 mx-auto max-w-7xl sm:px-6 sm:py-4",
-                        isScrolled ? "shadow-lg" : "",
+                        isScrolled ? "shadow-xl border-black/[0.16] dark:border-white/[0.16]" : "",
                     )}
                     intensity="high"
                 >
@@ -154,12 +182,8 @@ export function UnifiedNavigation() {
                                                     className={cn(
                                                         "px-3 py-2 text-sm md:text-base rounded-full transition-colors relative",
                                                         isActive
-                                                            ? theme === "light"
-                                                                ? "text-black"
-                                                                : "text-white"
-                                                            : theme === "light"
-                                                                ? "text-black/60 hover:text-black"
-                                                                : "text-white/60 hover:text-white",
+                                                            ? "bg-foreground/10 text-foreground"
+                                                            : "text-foreground/60 hover:text-foreground",
                                                     )}
                                                     onClick={(event) => {
                                                         event.preventDefault()
@@ -169,7 +193,7 @@ export function UnifiedNavigation() {
                                                     {item.name}
                                                     {isActive && (
                                                         <motion.div
-                                                            className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary mx-3"
+                                                            className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-primary mx-3"
                                                             layoutId="activeNavIndicator"
                                                             transition={{ duration: 0.15 }}
                                                         />
@@ -192,14 +216,10 @@ export function UnifiedNavigation() {
                                         aria-controls="mobile-menu"
                                         whileHover={{ scale: 1.05 }}
                                         whileTap={{ scale: 0.95 }}
-                                        className="flex h-8 w-8 items-center justify-center rounded-full border border-zinc-200/30 bg-white/80 shadow-sm backdrop-blur-sm dark:border-zinc-800/30 dark:bg-zinc-900/80"
+                                        className="flex h-8 w-8 items-center justify-center rounded-full border border-black/10 bg-white/70 shadow-sm backdrop-blur-sm dark:border-white/15 dark:bg-black/50"
                                         aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
                                     >
-                                        {mobileMenuOpen ? (
-                                            <X className="h-4 w-4 text-zinc-700 dark:text-zinc-300" />
-                                        ) : (
-                                            <Menu className="h-4 w-4 text-zinc-700 dark:text-zinc-300" />
-                                        )}
+                                        {mobileMenuOpen ? <X className="h-4 w-4 text-foreground/80" /> : <Menu className="h-4 w-4 text-foreground/80" />}
                                     </motion.button>
                                 </div>
                             </div>
@@ -215,7 +235,7 @@ export function UnifiedNavigation() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.15 }}
-                        className="fixed inset-0 z-[90] pt-24 pb-6 px-4"
+                        className="fixed inset-0 z-[90] pt-24 pb-6 px-4 backdrop-blur-[1px]"
                         id="mobile-menu"
                         role="menu"
                         aria-hidden={!mobileMenuOpen}
@@ -230,9 +250,7 @@ export function UnifiedNavigation() {
                                                 "block px-4 py-3 text-lg rounded-full transition-colors relative",
                                                 activeSection === item.href.replace("#", "")
                                                     ? "bg-primary text-primary-foreground"
-                                                    : theme === "light"
-                                                        ? "bg-black/5 text-black/80 hover:bg-black/10"
-                                                        : "bg-white/5 text-white/80 hover:bg-white/10",
+                                                    : "bg-foreground/5 text-foreground/80 hover:bg-foreground/10",
                                             )}
                                             onClick={(event) => {
                                                 event.preventDefault()

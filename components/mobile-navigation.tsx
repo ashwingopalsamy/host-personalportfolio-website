@@ -3,12 +3,11 @@
 import type React from "react"
 
 import { motion } from "framer-motion"
-import { useTheme } from "next-themes"
 import { cn } from "@/lib/utils"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { GlassContainer } from "./ui/glass-container"
-import {Home, BriefcaseBusiness, CodeXml, NotebookPen, Handshake, FolderCode} from "lucide-react"
+import { BriefcaseBusiness, CodeXml, FolderCode, Handshake, Home, NotebookPen } from "lucide-react"
 
 interface NavItem {
     name: string
@@ -27,7 +26,6 @@ const navItems: NavItem[] = [
 
 export function MobileNavigation() {
     const [activeSection, setActiveSection] = useState("home")
-    const { theme } = useTheme()
     const [isScrolled, setIsScrolled] = useState(false)
 
     // Update active section based on scroll position
@@ -53,7 +51,7 @@ export function MobileNavigation() {
             setActiveSection(currentSection)
         }
 
-        window.addEventListener("scroll", handleScroll)
+        window.addEventListener("scroll", handleScroll, { passive: true })
         handleScroll() // Initial check
 
         return () => {
@@ -67,21 +65,25 @@ export function MobileNavigation() {
             window.scrollTo({ top: 0, behavior: "smooth" })
         } else {
             const element = document.querySelector(href)
-            if (element) {
-                element.scrollIntoView({ behavior: "smooth" })
+            if (element instanceof HTMLElement) {
+                const y = Math.max(0, element.getBoundingClientRect().top + window.scrollY - 96)
+                window.scrollTo({ top: y, behavior: "smooth" })
             }
         }
     }
 
     return (
         <motion.div
-            className="fixed bottom-6 left-0 right-0 z-[100] mx-auto w-full max-w-[90%] md:hidden"
+            className="fixed bottom-6 left-0 right-0 z-[80] mx-auto w-full max-w-[90%] md:hidden"
             initial={{ y: 100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
         >
             <GlassContainer
-                className={cn("px-3 py-3 transition-all duration-300 mx-auto max-w-xs", isScrolled ? "shadow-lg" : "")}
+                className={cn(
+                    "mx-auto max-w-sm px-3 py-3 transition-all duration-300",
+                    isScrolled ? "shadow-xl border-black/[0.16] dark:border-white/[0.16]" : "",
+                )}
                 intensity="high"
             >
                 <div className="flex items-center justify-between">
@@ -90,12 +92,10 @@ export function MobileNavigation() {
                             <Link
                                 href={item.href}
                                 className={cn(
-                                    "flex flex-col items-center justify-center p-2 rounded-full transition-colors relative",
+                                    "relative flex flex-col items-center justify-center rounded-full p-2 transition-colors",
                                     activeSection === item.href.replace("#", "")
-                                        ? "text-primary"
-                                        : theme === "light"
-                                            ? "text-black/60 hover:text-black"
-                                            : "text-white/60 hover:text-white",
+                                        ? "bg-foreground/10 text-primary"
+                                        : "text-foreground/60 hover:text-foreground",
                                 )}
                                 onClick={(e) => {
                                     e.preventDefault()
