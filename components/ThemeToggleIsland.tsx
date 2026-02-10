@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
 
 export function ThemeToggleDynamicIsland() {
-    const { theme, setTheme } = useTheme()
+    const { theme, resolvedTheme, setTheme } = useTheme()
     const [mounted, setMounted] = useState(false)
     const [isAnimating, setIsAnimating] = useState(false)
 
@@ -15,12 +15,21 @@ export function ThemeToggleDynamicIsland() {
         setMounted(true)
     }, [])
 
-    if (!mounted) return null
+    const activeTheme = theme === "system" ? resolvedTheme : theme
+
+    if (!mounted || !activeTheme) {
+        return (
+            <button
+                aria-label="Toggle theme"
+                className="relative flex items-center justify-center h-8 w-8 rounded-full border border-zinc-300 bg-white dark:border-zinc-700 dark:bg-zinc-900"
+            />
+        )
+    }
 
     const toggleTheme = () => {
         if (isAnimating) return
         setIsAnimating(true)
-        setTheme(theme === "dark" ? "light" : "dark")
+        setTheme(activeTheme === "dark" ? "light" : "dark")
     }
 
     const iconVariants = {
@@ -57,27 +66,14 @@ export function ThemeToggleDynamicIsland() {
             aria-label="Toggle theme"
             className={cn(
                 "relative flex items-center justify-center h-8 w-8 rounded-full border transition-colors duration-150",
-                theme === "light"
+                activeTheme === "light"
                     ? "bg-white border-zinc-300 text-black hover:bg-zinc-100"
-                    : "bg-black border-white/20 text-white hover:bg-white/20"
+                    : "bg-black border-white/20 text-white hover:bg-white/20",
             )}
         >
-            {/* Radial accent glow */}
-            {theme === "dark" && (
-                <motion.div
-                    className="absolute inset-0 rounded-full opacity-30 pointer-events-none"
-                    animate={{
-                        background: "radial-gradient(circle at center, rgba(124, 58, 237, 0.5), rgba(31, 41, 55, 0))",
-                    }}
-                    transition={{ duration: 0.3 }}
-                />
-            )}
-
-
-            {/* Icon animation */}
             <div className="relative w-5 h-5 overflow-hidden">
                 <AnimatePresence mode="wait" onExitComplete={() => setIsAnimating(false)}>
-                    {theme === "light" ? (
+                    {activeTheme === "light" ? (
                         <motion.div
                             key="moon"
                             className="absolute inset-0 flex items-center justify-center"

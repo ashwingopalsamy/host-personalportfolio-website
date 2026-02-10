@@ -17,7 +17,7 @@ import { ScrollProgress } from "@/components/scroll-progress"
 
 export default function HomePage() {
     return (
-        <div className="flex flex-col gap-6 sm:gap-8 pb-16 md:pb-16 pb-24">
+        <div className="flex flex-col gap-6 pb-24 sm:gap-8 md:pb-16">
             <ScrollProgress />
 
             {/* Unified Navigation */}
@@ -48,7 +48,7 @@ export default function HomePage() {
                                             quality={90}
                                         />
                                     </motion.div>
-                                    <h1 className="heading-xl text-center md:text-left">Hey, there!</h1>
+                                    <h1 className="heading-xl text-center text-balance md:text-left">Hey, there!</h1>
                                     <p className="text-xl text-muted-foreground text-center md:text-left">
                                         I&#39;m <span className="text-primary font-semibold">Ashwin</span>. I build internet-scale software
                                         systems.
@@ -78,24 +78,31 @@ export default function HomePage() {
                                                 size="lg"
                                                 variant="outline"
                                                 className="rounded-full border-muted bg-card text-muted-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"
+                                                asChild
                                             >
-                                                <Link href="https://linkedin.com/in/ashwingopalsamy" target="_blank" rel="noopener noreferrer">
+                                                <Link
+                                                    href="https://linkedin.com/in/ashwingopalsamy"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    aria-label="Visit Ashwin on LinkedIn"
+                                                >
                                                     LinkedIn
                                                 </Link>
                                             </Button>
                                         </motion.div>
 
                                         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                                            <Button size="lg" className="rounded-full bg-primary hover:bg-primary/90 text-white">
-                                                <Link
+                                            <Button size="lg" className="rounded-full bg-primary hover:bg-primary/90 text-white" asChild>
+                                                <a
                                                     href="/Resume_AshwinGopalsamy.pdf"
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                     className="flex items-center gap-2"
+                                                    aria-label="Open Ashwin's resume"
                                                 >
                                                     <Download className="h-4 w-4" />
                                                     Resume
-                                                </Link>
+                                                </a>
                                             </Button>
                                         </motion.div>
 
@@ -104,8 +111,11 @@ export default function HomePage() {
                                                 size="lg"
                                                 variant="outline"
                                                 className="rounded-full border-muted bg-card text-muted-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"
+                                                asChild
                                             >
-                                                <Link href="mailto:ashwin2125@icloud.com">Email</Link>
+                                                <a href="mailto:ashwin2125@icloud.com" aria-label="Send Ashwin an email">
+                                                    Email
+                                                </a>
                                             </Button>
                                         </motion.div>
 
@@ -114,8 +124,14 @@ export default function HomePage() {
                                                 size="lg"
                                                 variant="outline"
                                                 className="rounded-full border-muted bg-card text-muted-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"
+                                                asChild
                                             >
-                                                <Link href="https://github.com/ashwingopalsamy" target="_blank" rel="noopener noreferrer">
+                                                <Link
+                                                    href="https://github.com/ashwingopalsamy"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    aria-label="Visit Ashwin on GitHub"
+                                                >
                                                     GitHub
                                                 </Link>
                                             </Button>

@@ -1,7 +1,6 @@
 "use client"
 
 import { motion, useScroll, useSpring } from "framer-motion"
-import { useTheme } from "next-themes"
 import { useReducedMotion } from "@/hooks/use-reduced-motion"
 
 export function ScrollProgress() {
@@ -14,8 +13,6 @@ export function ScrollProgress() {
         restDelta: 0.001,
     })
 
-    const { theme } = useTheme()
-
     if (prefersReducedMotion) {
         return null // Don't show the animation for users who prefer reduced motion
     }
@@ -25,7 +22,7 @@ export function ScrollProgress() {
             className="fixed top-0 left-0 right-0 h-1 z-[101] origin-left"
             style={{
                 scaleX,
-                backgroundColor: theme === "dark" ? "hsl(var(--primary))" : "hsl(var(--primary))",
+                backgroundColor: "hsl(var(--primary))",
             }}
         />
     )

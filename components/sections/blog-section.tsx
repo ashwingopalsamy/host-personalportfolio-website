@@ -82,6 +82,7 @@ export function BlogSection() {
                                     "rounded-full bg-primary hover:bg-primary/90 text-white text-lg h-auto",
                                     isMobile ? "w-full px-4 py-3" : "px-7 py-4",
                                 )}
+                                asChild
                             >
                                 <a
                                     href="https://ashwingopalsamy.substack.com"

@@ -16,19 +16,19 @@ interface NavItem {
     icon: React.ReactNode
 }
 
+const navItems: NavItem[] = [
+    { name: "home", href: "#home", icon: <Home className="h-5 w-5" /> },
+    { name: "skills", href: "#skills", icon: <CodeXml className="h-5 w-5" /> },
+    { name: "experience", href: "#experience", icon: <BriefcaseBusiness className="h-5 w-5" /> },
+    { name: "projects", href: "#projects", icon: <FolderCode className="h-5 w-5" /> },
+    { name: "blog", href: "#blog", icon: <NotebookPen className="h-5 w-5" /> },
+    { name: "connect", href: "#connect", icon: <Handshake className="h-5 w-5" /> },
+]
+
 export function MobileNavigation() {
     const [activeSection, setActiveSection] = useState("home")
     const { theme } = useTheme()
     const [isScrolled, setIsScrolled] = useState(false)
-
-    const navItems: NavItem[] = [
-        { name: "home", href: "#home", icon: <Home className="h-5 w-5" /> },
-        {name : "skills", href: "#skills", icon: <CodeXml className="h-5 w-5" /> },
-        { name: "experience", href: "#experience", icon: <BriefcaseBusiness className="h-5 w-5" /> },
-        { name: "projects", href: "#projects", icon: <FolderCode className="h-5 w-5" /> },
-        { name: "blog", href: "#blog", icon: <NotebookPen className="h-5 w-5" /> },
-        { name: "connect", href: "#connect", icon: <Handshake className="h-5 w-5" /> },
-    ]
 
     // Update active section based on scroll position
     useEffect(() => {
@@ -59,7 +59,7 @@ export function MobileNavigation() {
         return () => {
             window.removeEventListener("scroll", handleScroll)
         }
-    }, [navItems])
+    }, [])
 
     const handleNavClick = (href: string) => {
         // Smooth scroll to section

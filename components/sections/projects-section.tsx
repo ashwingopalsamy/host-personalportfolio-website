@@ -17,14 +17,14 @@ export function ProjectsSection() {
     {
       title: "UUID v8",
       description:
-          "A open-source minimal Go library to generate RFC-compliant UUIDv8 values - future-ready and optimized for precision and clock-based sequencing. Designed for developers looking to adopt modern UUID standards with clear, idiomatic Go APIs.",
+          "An open-source minimal Go library to generate RFC-compliant UUIDv8 values - future-ready and optimized for precision and clock-based sequencing. Designed for developers looking to adopt modern UUID standards with clear, idiomatic Go APIs.",
       skills: ["Go", "UUID", "RFC-9562"],
       link: "https://github.com/ash3in/uuidv8",
     },
     {
       title: "UUIDCheck",
       description:
-          "A open-srouce zero-dependency utility in Go for validating UUIDs against RFC-4122, RFC-9562 formats. Includes built-in parsing of UUIDv7 values to extract embedded timestamps - lightweight, accurate, and useful in observability or data pipelines.",
+          "An open-source zero-dependency utility in Go for validating UUIDs against RFC-4122 and RFC-9562 formats. Includes built-in parsing of UUIDv7 values to extract embedded timestamps - lightweight, accurate, and useful in observability or data pipelines.",
       skills: ["Go", "UUID", "RFC-4122", "RFC-9562"],
       link: "https://github.com/ashwingopalsamy/uuidcheck",
     },
@@ -38,7 +38,7 @@ export function ProjectsSection() {
     {
       title: "Intelligent Traffic Management System",
       description:
-          "Bachelors Degree Final Project. Built a smart traffic controller using YOLO ML for vehicle detection and dynamic signal switching. Designed to respond to real-time road conditions from surveillance footage, improving flow efficiency over static timers.",
+          "Bachelor's degree final project. Built a smart traffic controller using YOLO ML for vehicle detection and dynamic signal switching. Designed to respond to real-time road conditions from surveillance footage, improving flow efficiency over static timers.",
       skills: ["YOLO", "Object Detection", "Google Cloud", "Python"],
       link: "#",
     },
@@ -52,7 +52,7 @@ export function ProjectsSection() {
     {
       title: "Portfolio Website",
       description:
-          "This website - built with Next.js and Tailwind - serves as both a design sandbox and a way to reflect my evolution as a full-stack developer. Features responsive layouts, dark/light mode, animations with Framer Motion, and a clean aesthetic that’s easy to maintain.",
+          "This website - built with Next.js and Tailwind - serves as both a design sandbox and a way to reflect my evolution as a full-stack developer. Features responsive layouts, dark/light mode, Framer Motion animations, and a clean aesthetic that is easy to maintain.",
       skills: ["Next.js", "React", "Tailwind CSS", "Framer Motion"],
       link: "#",
     },
@@ -92,7 +92,10 @@ export function ProjectsSection() {
             </motion.div>
 
             <div className="space-y-6 mt-6">
-              {projects.map((project, index) => (
+              {projects.map((project, index) => {
+                const hasLiveLink = project.link && project.link !== "#"
+
+                return (
                   <motion.div
                       key={index}
                       initial={{ opacity: 0, y: 20 }}
@@ -132,27 +135,42 @@ export function ProjectsSection() {
                             whileHover={{ scale: 1.15, rotate: 6 }}
                             whileTap={{ scale: 0.9 }}
                         >
-                          <a
-                              href={project.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className={cn(
-                                  "flex items-center justify-center w-20 h-20 rounded-full transition-all duration-200",
-                                  hoveredProject === index
-                                      ? "bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))]"
-                                      : theme === "light"
-                                          ? "bg-black/5 text-black"
-                                          : "bg-white/5 text-white",
-                              )}
-                              aria-label={`Visit ${project.title} project`}
-                          >
-                            <ArrowUpRight className="w-8 h-8 transition-all duration-200" />
-                          </a>
+                          {hasLiveLink ? (
+                              <a
+                                  href={project.link}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className={cn(
+                                      "flex items-center justify-center w-20 h-20 rounded-full transition-all duration-200",
+                                      hoveredProject === index
+                                          ? "bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))]"
+                                          : theme === "light"
+                                              ? "bg-black/5 text-black"
+                                              : "bg-white/5 text-white",
+                                  )}
+                                  aria-label={`Visit ${project.title} project`}
+                              >
+                                <ArrowUpRight className="w-8 h-8 transition-all duration-200" />
+                              </a>
+                          ) : (
+                              <div
+                                  className={cn(
+                                      "flex items-center justify-center w-20 h-20 rounded-full border transition-all duration-200 cursor-not-allowed",
+                                      theme === "light"
+                                          ? "border-black/10 bg-black/5 text-black/35"
+                                          : "border-white/10 bg-white/5 text-white/35",
+                                  )}
+                                  aria-label={`${project.title} project link unavailable`}
+                              >
+                                <ArrowUpRight className="w-8 h-8 transition-all duration-200" />
+                              </div>
+                          )}
                         </motion.div>
                       </div>
                     </GlassContainer>
                   </motion.div>
-              ))}
+                )
+              })}
             </div>
 
             {/* GitHub Link Section */}

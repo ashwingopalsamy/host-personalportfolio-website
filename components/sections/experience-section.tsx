@@ -9,104 +9,100 @@ import { Calendar, ChevronDown, ChevronUp, Download, ExternalLink } from "lucide
 import { cn } from "@/lib/utils"
 import { useTheme } from "next-themes"
 
+interface Experience {
+    company: string
+    logo: string
+    role: string
+    period: string
+    secondPeriod?: string
+    description: string[]
+    skills: string[]
+    link: string
+}
+
+const experiences: Experience[] = [
+    {
+        company: "VISA",
+        logo: "/VISA.svg",
+        role: "Staff Software Engineer",
+        period: "May 2025 - Present",
+        description: [
+            "At VISA, I work on Pismo; a modern, cloud-native platform powering banks and fintechs across the globe with scalable, secure financial infrastructure.",
+            "Contributing to the platform that safeguards substantially high-volume system interactions with real-time decisioning and reliability at scale.",
+            "Immersing in VISA's global-grade engineering practices while aligning early efforts toward platform integrity, modularity, and long-term resilience.",
+        ],
+        skills: ["Go", "Distributed Systems", "Cloud Native Architecture", "Event-driven Architecture", "Microservices"],
+        link: "https://www.visa.com",
+    },
+    {
+        company: "Solaris SE",
+        logo: "/Solaris.svg",
+        role: "Professional Engineer",
+        period: "June 2022 - April 2025",
+        description: [
+            "Owning the Accounts Domain within the Core Banking unit, home to foundational systems powering account lifecycle and interest-based financial products.",
+            "Designed and implemented cloud-native microservices using an event-sourced architecture - engineered for resilience, uptime, and scale.",
+            "Drove the development of the 'Savings Account' product, particularly on tax exemptions and monthly interest payouts - positioning the product as one of the core revenue generators.",
+            "Built and maintained the 'Credit Card Interest' component, enabling interest computations, accruals, and settlements in high-throughput workflows powering hundreds of thousands of cards.",
+            "Built practical domain knowledge in interest-bearing products, tax rules (like Freistellungsauftrag), credit systems, and regulatory constraints - translating this into informed technical decisions and better alignment with product strategy.",
+            "Served as the first representative for our Accounts & Interests domain during ADAC's large-scale migration - ensuring a smooth transition with zero downtime.",
+            "Worked closely with product owners, guilds, and fellow engineers to translate business intent into reliable, production-ready services.",
+            "Contributed to on-call rotations, improved observability practices, and helped standardize runbooks - supporting faster incident recovery and operational readiness.",
+            "Continuously evolved critical services with a focus on long-term maintainability, clarity, and performance across systems processing millions of daily transactions.",
+        ],
+        skills: ["Go", "AWS", "Distributed Systems", "Microservices", "Kubernetes", "Terraform", "Snowflake", "Product Development"],
+        link: "https://www.solarisgroup.com",
+    },
+    {
+        company: "Hexaware",
+        logo: "/hexaware.svg",
+        role: "Software Engineer Associate",
+        period: "June 2021 - June 2022",
+        secondPeriod: "",
+        description: [
+            "Contributed to the development of distributed systems in the enterprise domain, improving performance and helping deliver ahead of schedule.",
+            "Worked on deploying a cloud-based HRMS product for a global automotive client - supporting 75K+ users within a system valued at over $1.5B.",
+            "Collaborated across cross-functional teams to integrate business logic with existing features, improving maintainability and reducing post-release defects.",
+            "Participated in reviews, documentation, and internal demos - ensuring alignment with expectations and internal quality standards.",
+            "Gained exposure to large-scale deployment practices, pipelines, and enterprise security principles while working on production-facing systems.",
+        ],
+        skills: ["Go", "JavaScript", "Oracle Cloud", "Databases"],
+        link: "https://hexaware.com",
+    },
+    {
+        company: "Microsoft",
+        logo: "/Microsoft.svg",
+        role: "Intern",
+        period: "4 months",
+        description: [
+            "Learned and engaged in the development of an open-source project over a 4-month span, utilizing Microsoft Azure Cloud and GitHub, as a participant in Microsoft's FutureReadyTalent Internship Program.",
+            "Built Bud.ai - 'The Student Twin', an open-source project developed on Microsoft Azure as part of the FutureReadyTalent program.",
+            "Collaborated via GitHub and deployed cloud-native features using Azure's AI tooling, getting hands-on exposure to open-source practices and scalable app design.",
+        ],
+        skills: ["Microsoft Azure", "JavaScript", "Git"],
+        link: "https://news.microsoft.com/en-in/microsoft-collaborates-with-aicte-nasscom-ey-github-and-quess-corp-to-empower-indias-youth-with-tech-skills-to-be-job-ready/",
+    },
+    {
+        company: "Swiggy",
+        logo: "/swiggy.svg",
+        role: "i++ Trainee",
+        period: "3 months",
+        description: [
+            "Selected as one of 30 trainees for Swiggy's i++ engineering program - an immersive bootcamp focused on backend engineering at scale.",
+            "Trained hands-on with real-world engineering tools and patterns - covering Go, gRPC, Kafka, AWS, and distributed databases.",
+            "Learned through mentorship, pair programming, and internal engineering talks that shaped a strong foundation in building production-grade systems.",
+            "This experience played a pivotal role in shaping my transition into backend product development, grounding me in modern cloud-native practices very early in my career.",
+        ],
+        skills: ["Go", "AWS", "gRPC", "Kafka", "DynamoDB", "PostgreSQL", "Jenkins", "Prometheus"],
+        link: "https://timesofindia.indiatimes.com/business/startups/people/swiggy-plans-to-create-next-gen-engineers-with-its-i-program/articleshow/92522076.cms",
+    },
+]
+
 export function ExperienceSection() {
     const [expandedExperience, setExpandedExperience] = useState<number | null>(null)
     const { theme } = useTheme()
     const sectionRef = useRef<HTMLElement>(null)
     const isInView = useInView(sectionRef, { once: true, margin: "-100px 0px" })
-
-    const experiences = [
-        {
-            company: "VISA",
-            logo: "/VISA.svg",
-            role: "Staff Software Engineer",
-            period: "May 2025 - Present",
-            description: [
-                "At VISA, I work on Pismo; a modern, cloud-native platform powering banks and fintechs across the globe with scalable, secure financial infrastructure.",
-                "Contributing to the platform thats safeguarding substantially high-volume system interactions with real-time decisioning and reliability at scale.",
-                "Immersing in VISA's global-grade engineering practices, while aligning early efforts toward platform integrity, modularity, and long-term resilience.",
-            ],
-            skills: [
-                "Go",
-                "Distributed Systems",
-                "Cloud Native Architecture",
-                "Event-driven Architecture",
-                "Microservices",
-            ],
-            link: "https://www.visa.com",
-        },
-        {
-            company: "Solaris SE",
-            logo: "/Solaris.svg",
-            role: "Professional Engineer",
-            period: "June 2022 - April 2025",
-            description: [
-                "Owning the Accounts Domain within the Core Banking unit, home to foundational systems powering accounts lifecycle and interest-based financial products.",
-                "Designed and implemented cloud-native microservices using an event-sourced architecture - engineered for resilience, uptime, and scale.",
-                "Drove the development of the 'Savings Account' product, particularly on tax exemptions and monthly interest payouts - positioning the product as one of the core revenue generators.",
-                "Built and maintained the 'Credit Card Interest' component, enabling interest computations, accruals, settlements in a high-throughput workflows, powering hundreds of thousands of cards",
-                "Built practical domain knowledge in interest-bearing products, tax rules (like Freistellungsauftrag), credit systems, and regulatory constraints - translating this into informed technical decisions and better alignment with product strategy.",
-                "Served as the first representative for our Accounts & Interests domain during ADAC's large-scale migration - ensuring a smooth transition with zero downtime.",
-                "Worked closely with product owners, guilds, and fellow engineers to translate business intent into reliable, production-ready services.",
-                "Contributed to on-call rotations, improved observability practices, and helped standardize runbooks - supporting faster incident recovery and operational readiness.",
-                "Continuously evolving critical services with a focus on long-term maintainability, clarity, and performance across systems processing millions of daily transactions.",
-            ],
-            skills: [
-                "Go",
-                "AWS",
-                "Distributed Systems",
-                "Microservices",
-                "Kubernetes",
-                "Terraform",
-                "Snowflake",
-                "Product Development",
-            ],
-            link: "https://www.solarisgroup.com",
-        },
-        {
-            company: "Hexaware",
-            logo: "/hexaware.svg",
-            role: "Software Engineer Associate",
-            period: "June 2021 - June 2022",
-            secondPeriod: "",
-            description: [
-                "Contributed to the development of distributed systems in the enterprise domain, improving performance and helping deliver ahead of schedule.",
-                "Worked on deploying a cloud-based HRMS product for a global automotive client - supporting 75K+ users within a system valued at over $1.5B.",
-                "Collaborated across cross-functional teams to integrate business logic with existing features, improving maintainability and reducing post-release defects.",
-                "Participated in reviews, documentation, and internal demos - ensuring alignment with expectations and internal quality standards.",
-                "Gained exposure to large-scale deployment practices, pipelines, and enterprise security principles while working on production-facing systems.",
-            ],
-            skills: ["Go", "JavaScript", "Oracle Cloud", "Databases"],
-            link: "https://hexaware.com",
-        },
-        {
-            company: "Microsoft",
-            logo: "/Microsoft.svg",
-            role: "Intern",
-            period: "4 months",
-            description: [
-                "Learnt & engaged in the development of an open-source project over a 4-month span, utilizing Microsoft Azure Cloud and GitHub, as a key participant in Microsoft's 'FutureReadyTalent' Internship Program.",
-                "Built Bud.ai - 'The Student Twin', an open-source project developed on Microsoft Azure as part of the FutureReadyTalent program.",
-                "Collaborated via GitHub and deployed cloud-native features using Azure's AI tooling, getting hands-on exposure to open-source practices and scalable app design.",
-            ],
-            skills: ["Microsoft Azure", "JavaScript", "Git"],
-            link: "https://news.microsoft.com/en-in/microsoft-collaborates-with-aicte-nasscom-ey-github-and-quess-corp-to-empower-indias-youth-with-tech-skills-to-be-job-ready/",
-        },
-        {
-            company: "Swiggy",
-            logo: "/swiggy.svg",
-            role: "i++ Trainee",
-            period: "3 months",
-            description: [
-                "Selected as one of 30 trainees for Swiggy's i++ engineering program - an immersive bootcamp focused on backend engineering at scale.",
-                "Trained hands-on with real-world engineering tools and patterns - covering Go, gRPC, Kafka, AWS, and distributed databases.",
-                "Learned through mentorship, pair programming, and internal engineering talks that shaped a strong foundation in building production-grade systems.",
-                "This experience played a pivotal role in shaping my transition into backend product development, grounding me in modern cloud-native practices very early in my career.",
-            ],
-            skills: ["Go", "AWS", "gRPC", "Kafka", "DynamoDB", "PostgreSQL", "Jenkins", "Prometheus"],
-            link: "https://timesofindia.indiatimes.com/business/startups/people/swiggy-plans-to-create-next-gen-engineers-with-its-i-program/articleshow/92522076.cms",
-        },
-    ]
 
     const toggleExpand = (index: number) => {
         setExpandedExperience(expandedExperience === index ? null : index)
@@ -120,7 +116,7 @@ export function ExperienceSection() {
                 img.src = exp.logo
             })
         }
-    }, [isInView, experiences])
+    }, [isInView])
 
     return (
         <section

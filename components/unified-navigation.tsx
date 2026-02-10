@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
 import Image from "next/image"
@@ -10,109 +10,79 @@ import { useTheme } from "next-themes"
 import { ThemeToggleDynamicIsland } from "@/components/ThemeToggleIsland"
 import { Menu, X } from "lucide-react"
 
+const navItems = [
+    { name: "skills", href: "#skills" },
+    { name: "experience", href: "#experience" },
+    { name: "projects", href: "#projects" },
+    { name: "blog", href: "#blog" },
+    { name: "connect", href: "#connect" },
+] as const
+
+function getScrollOffset() {
+    return window.innerWidth < 768 ? 96 : 124
+}
+
 export function UnifiedNavigation() {
     const [activeSection, setActiveSection] = useState("home")
-    const [showResumePopup, setShowResumePopup] = useState(false)
-    const [isHoveringResume] = useState(false)
-    const [showHoverPopup, setShowHoverPopup] = useState(false)
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-    const hoverTimerRef = useRef<NodeJS.Timeout | null>(null)
-    const { theme } = useTheme()
+    const { theme, resolvedTheme } = useTheme()
     const [mounted, setMounted] = useState(false)
     const [isScrolled, setIsScrolled] = useState(false)
 
-    // Prevent hydration mismatch
     useEffect(() => {
         setMounted(true)
     }, [])
-
-    const navItems = [
-        { name: "skills", href: "#skills" },
-        { name: "experience", href: "#experience" },
-        { name: "projects", href: "#projects" },
-        { name: "blog", href: "#blog" },
-        { name: "connect", href: "#connect" },
-    ]
 
     useEffect(() => {
         let ticking = false
 
         const handleScroll = () => {
-            if (!ticking) {
-                window.requestAnimationFrame(() => {
-                    const scrollY = window.scrollY
-                    setIsScrolled(scrollY > 10)
+            if (ticking) return
 
-                    const sections = ["home", ...navItems.map((item) => item.href.replace("#", ""))]
+            ticking = true
+            window.requestAnimationFrame(() => {
+                setIsScrolled(window.scrollY > 10)
 
-                    let current = "home"
-                    for (const section of sections) {
-                        const el = document.getElementById(section)
-                        if (!el) continue
-                        const { top, bottom } = el.getBoundingClientRect()
-                        if (top <= 200 && bottom >= 200) {
-                            current = section
-                            break
-                        }
+                const sections = ["home", ...navItems.map((item) => item.href.replace("#", ""))]
+                let current = "home"
+
+                for (const section of sections) {
+                    const element = document.getElementById(section)
+                    if (!element) continue
+
+                    const { top, bottom } = element.getBoundingClientRect()
+                    if (top <= 220 && bottom >= 220) {
+                        current = section
+                        break
                     }
+                }
 
-                    if (current !== activeSection) {
-                        setActiveSection(current)
-                    }
-
-                    if (current === "experience") {
-                        const experienceSection = document.getElementById("experience")
-                        if (experienceSection) {
-                            const rect = experienceSection.getBoundingClientRect()
-                            setShowResumePopup(rect.bottom <= 300)
-                        }
-                    } else {
-                        setShowResumePopup(false)
-                    }
-
-                    ticking = false
-                })
-                ticking = true
-            }
+                setActiveSection(current)
+                ticking = false
+            })
         }
 
-        window.addEventListener("scroll", handleScroll)
+        window.addEventListener("scroll", handleScroll, { passive: true })
         handleScroll()
 
         return () => window.removeEventListener("scroll", handleScroll)
-    }, [navItems, activeSection])
+    }, [])
 
-    useEffect(() => {
-        if (isHoveringResume) {
-            hoverTimerRef.current = setTimeout(() => {
-                setShowHoverPopup(true)
-            }, 1000)
-        } else {
-            if (hoverTimerRef.current) {
-                clearTimeout(hoverTimerRef.current)
-                hoverTimerRef.current = null
-            }
-            setShowHoverPopup(false)
-        }
-
-        return () => {
-            if (hoverTimerRef.current) {
-                clearTimeout(hoverTimerRef.current)
-            }
-        }
-    }, [isHoveringResume])
-
-    const scrollToElement = (element: HTMLElement, duration = 150) => {
+    const scrollToElement = (element: HTMLElement, duration = 180) => {
         const start = window.scrollY
-        const end = element.getBoundingClientRect().top + start
-        const distance = end - start
+        const targetY = Math.max(
+            0,
+            element === document.body ? 0 : element.getBoundingClientRect().top + start - getScrollOffset(),
+        )
+        const distance = targetY - start
         const startTime = performance.now()
 
-        const easeOutQuad = (t: number) => t * (2 - t)
+        const easeOutQuad = (value: number) => value * (2 - value)
 
         const animateScroll = (currentTime: number) => {
             const elapsed = currentTime - startTime
             const progress = Math.min(elapsed / duration, 1)
+
             window.scrollTo(0, start + distance * easeOutQuad(progress))
             if (progress < 1) requestAnimationFrame(animateScroll)
         }
@@ -122,14 +92,20 @@ export function UnifiedNavigation() {
 
     const handleNavClick = (href: string) => {
         if (href === "#") {
-            scrollToElement(document.body)
-        } else {
-            const element = document.querySelector(href)
-            if (element instanceof HTMLElement) {
-                scrollToElement(element)
-            }
+            scrollToElement(document.body, 220)
+            return
+        }
+
+        const element = document.querySelector(href)
+        if (element instanceof HTMLElement) {
+            scrollToElement(element)
         }
     }
+
+    const logo = useMemo(() => {
+        const activeTheme = theme === "system" ? resolvedTheme : theme
+        return activeTheme === "light" ? "/logo-light.png" : "/logo-dark.png"
+    }, [theme, resolvedTheme])
 
     if (!mounted) return null
 
@@ -143,7 +119,7 @@ export function UnifiedNavigation() {
             >
                 <GlassContainer
                     className={cn(
-                        "px-4 sm:px-6 py-3 sm:py-4 transition-all duration-300 mx-auto max-w-7xl",
+                        "px-4 py-3 transition-all duration-300 mx-auto max-w-7xl sm:px-6 sm:py-4",
                         isScrolled ? "shadow-lg" : "",
                     )}
                     intensity="high"
@@ -157,7 +133,7 @@ export function UnifiedNavigation() {
                             >
                                 <Link href="#" onClick={() => handleNavClick("#")} aria-label="Logo">
                                     <Image
-                                        src={theme === "dark" ? "/logo-dark.png" : "/logo-light.png"}
+                                        src={logo}
                                         alt="Logo"
                                         width={40}
                                         height={40}
@@ -165,40 +141,43 @@ export function UnifiedNavigation() {
                                     />
                                 </Link>
                             </motion.div>
+
                             <div className="flex items-center space-x-1 md:space-x-6">
                                 <div className="hidden md:flex items-center space-x-6">
-                                    {navItems.map((item) => (
-                                        <motion.div key={item.name} whileHover={{ y: -2 }} whileTap={{ y: 0 }}>
-                                            <Link
-                                                href={item.href}
-                                                className={cn(
-                                                    "px-3 py-2 text-sm md:text-base rounded-full transition-colors relative",
-                                                    activeSection === item.href.replace("#", "")
-                                                        ? theme === "light"
-                                                            ? "text-black"
-                                                            : "text-white"
-                                                        : theme === "light"
-                                                            ? "text-black/60 hover:text-black"
-                                                            : "text-white/60 hover:text-white",
-                                                )}
-                                                onClick={(e) => {
-                                                    if (typeof window !== "undefined") {
-                                                        e.preventDefault()
+                                    {navItems.map((item) => {
+                                        const isActive = activeSection === item.href.replace("#", "")
+
+                                        return (
+                                            <motion.div key={item.name} whileHover={{ y: -2 }} whileTap={{ y: 0 }}>
+                                                <Link
+                                                    href={item.href}
+                                                    className={cn(
+                                                        "px-3 py-2 text-sm md:text-base rounded-full transition-colors relative",
+                                                        isActive
+                                                            ? theme === "light"
+                                                                ? "text-black"
+                                                                : "text-white"
+                                                            : theme === "light"
+                                                                ? "text-black/60 hover:text-black"
+                                                                : "text-white/60 hover:text-white",
+                                                    )}
+                                                    onClick={(event) => {
+                                                        event.preventDefault()
                                                         handleNavClick(item.href)
-                                                    }
-                                                }}
-                                            >
-                                                {item.name}
-                                                {activeSection === item.href.replace("#", "") && (
-                                                    <motion.div
-                                                        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary mx-3"
-                                                        layoutId="activeNavIndicator"
-                                                        transition={{ duration: 0.15 }}
-                                                    />
-                                                )}
-                                            </Link>
-                                        </motion.div>
-                                    ))}
+                                                    }}
+                                                >
+                                                    {item.name}
+                                                    {isActive && (
+                                                        <motion.div
+                                                            className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary mx-3"
+                                                            layoutId="activeNavIndicator"
+                                                            transition={{ duration: 0.15 }}
+                                                        />
+                                                    )}
+                                                </Link>
+                                            </motion.div>
+                                        )
+                                    })}
 
                                     <div className="flex items-center">
                                         <ThemeToggleDynamicIsland />
@@ -208,7 +187,7 @@ export function UnifiedNavigation() {
                                 <div className="md:hidden flex items-center space-x-2">
                                     <ThemeToggleDynamicIsland />
                                     <motion.button
-                                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                                        onClick={() => setMobileMenuOpen((prev) => !prev)}
                                         aria-expanded={mobileMenuOpen}
                                         aria-controls="mobile-menu"
                                         whileHover={{ scale: 1.05 }}
@@ -255,8 +234,8 @@ export function UnifiedNavigation() {
                                                         ? "bg-black/5 text-black/80 hover:bg-black/10"
                                                         : "bg-white/5 text-white/80 hover:bg-white/10",
                                             )}
-                                            onClick={(e) => {
-                                                e.preventDefault()
+                                            onClick={(event) => {
+                                                event.preventDefault()
                                                 handleNavClick(item.href)
                                                 setMobileMenuOpen(false)
                                             }}
@@ -270,39 +249,6 @@ export function UnifiedNavigation() {
                     </motion.div>
                 )}
             </AnimatePresence>
-
-            <AnimatedResumePopup show={showResumePopup} />
-
-            <AnimatePresence>
-                {showHoverPopup && (
-                    <motion.div
-                        className="fixed z-50"
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 10 }}
-                        transition={{ duration: 0.15 }}
-                        style={{
-                            top: "50%",
-                            left: "50%",
-                            transform: "translate(-50%, -50%)",
-                        }}
-                    ></motion.div>
-                )}
-            </AnimatePresence>
         </>
-    )
-}
-
-function AnimatedResumePopup({ show }: { show: boolean }) {
-    return (
-        <motion.div
-            className="fixed bottom-6 left-0 right-0 z-40 mx-auto w-[90%] max-w-md"
-            initial={{ y: 100, opacity: 0 }}
-            animate={{
-                y: show ? 0 : 100,
-                opacity: show ? 1 : 0,
-            }}
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        ></motion.div>
     )
 }
