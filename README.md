@@ -14,6 +14,8 @@ This portfolio exposes machine-readable surfaces for AI assistants and AI search
 
 ## Getting Started
 
+Use Node.js `24.x` for local development and hosting platform settings.
+
 First, run the development server:
 
 ```bash
