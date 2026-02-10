@@ -4,32 +4,47 @@ import type { NextRequest } from "next/server"
 // Rate limiting configuration
 const RATE_LIMIT = 100 // requests
 const RATE_LIMIT_WINDOW = 60 * 60 * 1000 // 1 hour in milliseconds
+const AI_DISCOVERY_PATHS = new Set([
+    "/api/ai-summary",
+    "/llms.txt",
+    "/llms-full.txt",
+    "/ai.txt",
+    "/ai-sitemap.xml",
+    "/.well-known/llms.txt",
+    "/.well-known/openapi.yaml",
+    "/.well-known/ai-plugin.json",
+])
 
 // In-memory store for rate limiting
 const ipRequestCounts = new Map<string, { count: number; resetTime: number }>()
 
 export function middleware(request: NextRequest) {
-    // Rate limiting logic
-    const ip = request.headers.get('x-forwarded-for')?.split(',')[0] ?? 'anonymous'
-    const now = Date.now()
-    const requestData = ipRequestCounts.get(ip)
+    const pathname = request.nextUrl.pathname
+    const isAiDiscoveryRequest = AI_DISCOVERY_PATHS.has(pathname)
 
-    if (requestData) {
-        if (now > requestData.resetTime) {
-            ipRequestCounts.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW })
-        } else if (requestData.count >= RATE_LIMIT) {
-            return new NextResponse('Too Many Requests', {
-                status: 429,
-                headers: {
-                    'Retry-After': String(Math.ceil((requestData.resetTime - now) / 1000))
-                }
-            })
+    // Rate limiting logic
+    if (!isAiDiscoveryRequest) {
+        const ip = request.headers.get('x-forwarded-for')?.split(',')[0] ?? 'anonymous'
+        const now = Date.now()
+        const requestData = ipRequestCounts.get(ip)
+
+        if (requestData) {
+            if (now > requestData.resetTime) {
+                ipRequestCounts.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW })
+            } else if (requestData.count >= RATE_LIMIT) {
+                return new NextResponse('Too Many Requests', {
+                    status: 429,
+                    headers: {
+                        'Retry-After': String(Math.ceil((requestData.resetTime - now) / 1000))
+                    }
+                })
+            } else {
+                requestData.count++
+                ipRequestCounts.set(ip, requestData)
+            }
         } else {
-            requestData.count++
-            ipRequestCounts.set(ip, requestData)
+            ipRequestCounts.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW })
         }
-    } else {
-        ipRequestCounts.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW })
     }
 
     // Create response
@@ -59,13 +74,22 @@ export function middleware(request: NextRequest) {
     response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), interest-cohort=()')
     response.headers.set('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload')
     response.headers.set('X-DNS-Prefetch-Control', 'on')
-    response.headers.set('Cache-Control', 'public, max-age=31536000, immutable')
+    response.headers.set(
+        'Cache-Control',
+        isAiDiscoveryRequest
+            ? 'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800'
+            : 'public, max-age=0, must-revalidate',
+    )
     response.headers.set('Cross-Origin-Embedder-Policy', 'require-corp')
     response.headers.set('Cross-Origin-Opener-Policy', 'same-origin')
     response.headers.set('Cross-Origin-Resource-Policy', 'same-origin')
     response.headers.set('X-Permitted-Cross-Domain-Policies', 'none')
     response.headers.set('X-Download-Options', 'noopen')
     response.headers.set('X-Powered-By', 'Next.js')
+
+    if (isAiDiscoveryRequest) {
+        response.headers.set('X-Robots-Tag', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1')
+    }
 
     return response
 }

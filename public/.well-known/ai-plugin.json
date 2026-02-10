@@ -2,8 +2,8 @@
   "schema_version": "v1",
   "name_for_human": "Ashwin Gopalsamy Portfolio",
   "name_for_model": "ashwin_gopalsamy_portfolio",
-  "description_for_human": "Learn about Ashwin Gopalsamy, a software engineer specializing in backend development.",
-  "description_for_model": "This plugin provides information about Ashwin Gopalsamy, a software engineer specializing in backend development with Python and Go. It includes details about his experience, skills, projects, and contact information.",
+  "description_for_human": "Access a structured profile of Ashwin Gopalsamy, Staff Software Engineer focused on cloud-native backend systems.",
+  "description_for_model": "Provides machine-readable profile data for Ashwin Gopalsamy, including role, experience, skills, projects, and discovery endpoints for LLM consumption.",
   "auth": {
     "type": "none"
   },
@@ -11,8 +11,7 @@
     "type": "openapi",
     "url": "https://ashwingopalsamy.in/.well-known/openapi.yaml"
   },
-  "logo_url": "https://ashwingopalsamy.in/logo.png",
+  "logo_url": "https://ashwingopalsamy.in/logo-dark.png",
   "contact_email": "ashwin2125@icloud.com",
-  "legal_info_url": "https://ashwingopalsamy.in/legal"
+  "legal_info_url": "https://ashwingopalsamy.in/humans.txt"
 }
-

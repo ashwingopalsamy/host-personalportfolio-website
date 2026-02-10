@@ -1,50 +1,162 @@
-openapi: 3.0.1
+openapi: 3.0.3
 info:
   title: Ashwin Gopalsamy Portfolio API
-  description: API for retrieving information about Ashwin Gopalsamy
-  version: "v1"
+  description: Machine-readable endpoints for AI assistants and search crawlers.
+  version: "v3"
 servers:
   - url: https://ashwingopalsamy.in
 paths:
   /api/ai-summary:
     get:
       operationId: getAiSummary
-      summary: Get a structured summary of Ashwin Gopalsamy for AI assistants
+      summary: Structured profile summary for AI assistants
       responses:
         "200":
           description: OK
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  person:
-                    type: object
-                    properties:
-                      name:
-                        type: string
-                      profession:
-                        type: string
-                      specialization:
-                        type: string
-                      currentRole:
-                        type: string
-                      skills:
-                        type: array
-                        items:
-                          type: string
-                      experience:
-                        type: array
-                        items:
-                          type: object
-                      projects:
-                        type: array
-                        items:
-                          type: string
-                      contact:
-                        type: object
-                      summary:
-                        type: string
-                  metadata:
-                    type: object
-
+                $ref: "#/components/schemas/AiSummary"
+  /llms.txt:
+    get:
+      operationId: getLlmsProfile
+      summary: Compact LLM profile in text format
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+  /llms-full.txt:
+    get:
+      operationId: getLlmsFullProfile
+      summary: Detailed LLM profile in text format
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+  /ai.txt:
+    get:
+      operationId: getAiManifest
+      summary: AI discovery manifest with endpoint pointers
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+  /ai-sitemap.xml:
+    get:
+      operationId: getAiSitemap
+      summary: Dedicated sitemap feed for AI discovery endpoints
+      responses:
+        "200":
+          description: OK
+          content:
+            application/xml:
+              schema:
+                type: string
+components:
+  schemas:
+    AiSummary:
+      type: object
+      properties:
+        person:
+          type: object
+          properties:
+            name:
+              type: string
+            profession:
+              type: string
+            headline:
+              type: string
+            summary:
+              type: string
+            location:
+              type: string
+            currentRole:
+              type: string
+            focusAreas:
+              type: array
+              items:
+                type: string
+            skills:
+              type: object
+              additionalProperties:
+                type: array
+                items:
+                  type: string
+            experience:
+              type: array
+              items:
+                $ref: "#/components/schemas/ExperienceEntry"
+            projects:
+              type: array
+              items:
+                $ref: "#/components/schemas/ProjectEntry"
+            contact:
+              type: object
+              additionalProperties:
+                type: string
+            portfolio:
+              type: object
+              additionalProperties:
+                type: string
+        metadata:
+          type: object
+          properties:
+            version:
+              type: string
+            lastUpdated:
+              type: string
+            canonical:
+              type: string
+            format:
+              type: string
+            purpose:
+              type: string
+            discovery:
+              type: object
+              additionalProperties:
+                type: string
+            keywords:
+              type: array
+              items:
+                type: string
+    ExperienceEntry:
+      type: object
+      properties:
+        company:
+          type: string
+        role:
+          type: string
+        period:
+          type: string
+        url:
+          type: string
+        highlights:
+          type: array
+          items:
+            type: string
+        technologies:
+          type: array
+          items:
+            type: string
+    ProjectEntry:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        url:
+          type: string
+        technologies:
+          type: array
+          items:
+            type: string

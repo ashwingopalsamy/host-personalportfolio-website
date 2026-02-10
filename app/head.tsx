@@ -31,6 +31,17 @@ export default function Head() {
                 content="Ashwin Gopalsamy is a software engineer specializing in cloud-native backend development, Go, and distributed systems"
             />
             <meta name="ai:structured-data-endpoint" content="/api/ai-summary" />
+            <meta name="ai:llms" content="/llms.txt" />
+            <meta name="ai:llms-full" content="/llms-full.txt" />
+            <meta name="ai:manifest" content="/ai.txt" />
+            <meta name="ai:openapi" content="/.well-known/openapi.yaml" />
+
+            <link rel="alternate" type="application/json" href="/api/ai-summary" title="AI profile summary JSON" />
+            <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM summary profile" />
+            <link rel="alternate" type="text/plain" href="/llms-full.txt" title="LLM full profile" />
+            <link rel="alternate" type="text/plain" href="/ai.txt" title="AI access manifest" />
+            <link rel="alternate" type="application/xml" href="/ai-sitemap.xml" title="AI sitemap feed" />
+            <link rel="alternate" type="application/yaml" href="/.well-known/openapi.yaml" title="OpenAPI schema" />
 
             {/* Additional SEO meta tags */}
             <meta name="author" content="Ashwin Gopalsamy" />

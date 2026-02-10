@@ -102,6 +102,19 @@ export default function ClientLayout({
 
             {/* Canonical link */}
             <link rel="canonical" href={baseUrl} />
+
+            {/* AI discovery links */}
+            <meta name="ai:structured-data-endpoint" content="/api/ai-summary" />
+            <meta name="ai:llms" content="/llms.txt" />
+            <meta name="ai:llms-full" content="/llms-full.txt" />
+            <meta name="ai:manifest" content="/ai.txt" />
+
+            <link rel="alternate" type="application/json" href="/api/ai-summary" title="AI profile summary JSON" />
+            <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM summary profile" />
+            <link rel="alternate" type="text/plain" href="/llms-full.txt" title="LLM full profile" />
+            <link rel="alternate" type="text/plain" href="/ai.txt" title="AI access manifest" />
+            <link rel="alternate" type="application/xml" href="/ai-sitemap.xml" title="AI sitemap feed" />
+            <link rel="alternate" type="application/yaml" href="/.well-known/openapi.yaml" title="OpenAPI schema" />
         </head>
         <body className="font-sans antialiased">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>

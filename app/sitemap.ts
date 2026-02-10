@@ -1,52 +1,27 @@
 import type { MetadataRoute } from "next"
+import { BASE_URL } from "@/lib/site-profile"
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://ashwingopalsamy.in"
-  const currentDate = new Date()
+  const lastModified = new Date("2026-02-10T00:00:00.000Z")
 
-  // Main pages
-  const routes = [
+  return [
     {
-      url: baseUrl,
-      lastModified: currentDate,
+      url: BASE_URL,
+      lastModified,
       changeFrequency: "weekly" as const,
       priority: 1,
     },
     {
-      url: `${baseUrl}/Resume_AshwinGopalsamy.pdf`,
-      lastModified: currentDate,
+      url: `${BASE_URL}/Resume_AshwinGopalsamy.pdf`,
+      lastModified,
       changeFrequency: "monthly" as const,
       priority: 0.8,
     },
-  ]
-
-  // Add sections as hash fragments
-  const sections = ["skills", "experience", "projects", "blog", "connect"]
-  sections.forEach((section, index) => {
-    routes.push({
-      url: `${baseUrl}/#${section}`,
-      lastModified: currentDate,
-      changeFrequency: "weekly" as const,
-      priority: 0.9 - index * 0.05, // Decreasing priority for each section
-    })
-  })
-
-  // Add blog posts if they exist
-  const blogPosts = [
     {
-      slug: "event-sourcing-in-go",
-      date: new Date("2025-05-30"),
+      url: `${BASE_URL}/humans.txt`,
+      lastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.4,
     },
   ]
-
-  blogPosts.forEach((post) => {
-    routes.push({
-      url: `${baseUrl}/blog/${post.slug}`,
-      lastModified: post.date,
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    })
-  })
-
-  return routes
 }

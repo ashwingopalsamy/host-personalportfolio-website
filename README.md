@@ -1,5 +1,17 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## AI Discovery Endpoints
+
+This portfolio exposes machine-readable surfaces for AI assistants and AI search crawlers:
+
+- `/api/ai-summary` - structured JSON profile with role, skills, experience, and links.
+- `/llms.txt` - compact LLM-friendly profile.
+- `/llms-full.txt` - expanded LLM profile with deeper context.
+- `/ai.txt` - lightweight discovery manifest pointing to all AI endpoints.
+- `/ai-sitemap.xml` - dedicated sitemap feed for AI endpoints.
+- `/.well-known/openapi.yaml` - OpenAPI schema for machine clients.
+- `/.well-known/ai-plugin.json` - plugin manifest.
+
 ## Getting Started
 
 First, run the development server:

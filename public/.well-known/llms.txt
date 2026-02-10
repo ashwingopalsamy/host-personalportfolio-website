@@ -1,0 +1,11 @@
+# Canonical LLM profile location
+https://ashwingopalsamy.in/llms.txt
+
+# Detailed profile
+https://ashwingopalsamy.in/llms-full.txt
+
+# AI sitemap feed
+https://ashwingopalsamy.in/ai-sitemap.xml
+
+# JSON summary
+https://ashwingopalsamy.in/api/ai-summary
